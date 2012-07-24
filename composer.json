@@ -1,6 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "csbill/core",
+    "description": "CSBill : General Billing Management",
     "autoload": {
         "psr-0": { "": "src/" }
     },
