@@ -23,17 +23,23 @@ class RequestListener
 	public $db;
 	
 	/**
-     * @DI\Observe("kernel.request", priority = 255)
+     * @DI\Observe("kernel.request", priority = 10)
      */	
 	public function onKernelRequest(GetResponseEvent $event)
-	{
-		try {
-			$this->db->connect();
-		} catch(\Exception $e)
+	{		
+		//$route = $event->getRequest()->get('_route');
+		$route = $event->getRequest()->getRequestUri();
+
+		if(strpos($route, 'installer') === false)
 		{
-			$response = new RedirectResponse($this->router->generate('_installer'));
+			try {
+				$this->db->connect();
+			} catch(\Exception $e)
+			{
+				$response = new RedirectResponse($this->router->generate('_installer'));
 			
-			$event->setResponse($response);
+				$event->setResponse($response);
+			}
 		}
 	}
 }
