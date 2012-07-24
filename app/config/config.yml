@@ -4,8 +4,8 @@ imports:
     - { resource: doctrine_extensions.yml }
 
 framework:
-    #esi:             ~
-    #translator:      { fallback: %locale% }
+    esi:             ~
+    translator:      { fallback: %locale% }
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -92,3 +92,9 @@ stof_doctrine_extensions:
     default_locale: en_US
     orm:
         default: ~
+
+jms_di_extra:
+    locations:
+        all_bundles: true
+        #bundles: []
+        directories: ["%kernel.root_dir%/../src"]
