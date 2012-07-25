@@ -27,11 +27,15 @@ class RequestListener
      */	
 	public function onKernelRequest(GetResponseEvent $event)
 	{		
-		$route = $event->getRequest()->get('_route');
-		//$route = $event->getRequest()->getRequestUri();
-
-		//if(strpos($route, 'installer') === false)
-		if($route === null)
+		$request = $event->getRequest();
+		
+		$script = $request->getScriptName();
+		
+		$uri = $request->getRequestUri();
+		
+		$route = str_replace($script, '', $uri);
+		
+		if($route === '')
 		{
 			try {
 				$this->db->connect();

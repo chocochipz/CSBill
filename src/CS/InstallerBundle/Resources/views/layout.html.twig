@@ -13,7 +13,8 @@
   
 	{% stylesheets
 		'bundles/cscore/css/boilerplate.css'
-		filter="cssrewrite,?yui_css"
+		'bundles/cscore/less/styles.less'
+		filter="less,cssrewrite,?yui_css"
 	%}
 		<link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="all" />
 	{% endstylesheets %}
