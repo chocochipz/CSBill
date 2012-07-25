@@ -27,10 +27,11 @@ class RequestListener
      */	
 	public function onKernelRequest(GetResponseEvent $event)
 	{		
-		//$route = $event->getRequest()->get('_route');
-		$route = $event->getRequest()->getRequestUri();
+		$route = $event->getRequest()->get('_route');
+		//$route = $event->getRequest()->getRequestUri();
 
-		if(strpos($route, 'installer') === false)
+		//if(strpos($route, 'installer') === false)
+		if($route === null)
 		{
 			try {
 				$this->db->connect();
@@ -38,8 +39,12 @@ class RequestListener
 			{
 				$response = new RedirectResponse($this->router->generate('_installer'));
 			
-				$event->setResponse($response);
+				return $event->setResponse($response);
 			}
+			
+			$response = new RedirectResponse($this->router->generate('_dashboard'));
+			
+			return $event->setResponse($response);
 		}
 	}
 }
