@@ -4,7 +4,7 @@ namespace CS\InstallerBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class InstallControllerTest extends WebTestCase
 {
     public function testIndex()
     {
