@@ -40,6 +40,9 @@ Thumbs.db
 # Bootstrap
 app/bootstrap*
 
+# Bootstrap
+composer.phar
+
 # Symfony directories
 vendor/*
 */logs/*
