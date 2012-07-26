@@ -3,23 +3,20 @@
 namespace CS\ClientBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * CS\ClientBundle\Entity\Client
+ * CS\ClientBundle\Entity\Contact
  *
- * @ORM\Table(name="clients")
- * @ORM\Entity(repositoryClass="CS\ClientBundle\Repository\ClientRepository")
- * @UniqueEntity("name")
+ * @ORM\Table(name="contacts")
+ * @ORM\Entity(repositoryClass="CS\ClientBundle\Repository\ContactRepository")
  * @Gedmo\Loggable()
  * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
-class Client
+class Contact
 {
     /**
      * @var integer $id
@@ -31,22 +28,21 @@ class Client
     private $id;
 
     /**
-     * @var string $name
+     * @var string $firstname
      *
-     * @ORM\Column(name="name", type="string", length=125, nullable=false, unique=true)
+     * @ORM\Column(name="firstname", type="string", length=125, nullable=false)
      * @Assert\NotBlank()
      * @Assert\MaxLength(125)
      */
-    private $name;
+    private $firstname;
 
     /**
-     * @var string $website
+     * @var string $lastname
      *
-     * @ORM\Column(name="website", type="string", length=125, nullable=true)
-     * @Assert\Url()
+     * @ORM\Column(name="lastname", type="string", length=125, nullable=true)
      * @Assert\MaxLength(125)
      */
-    private $website;
+    private $lastname;
     
     /**
      * @var string $created
@@ -75,21 +71,12 @@ class Client
     private $deleted;
     
     /**
-     * @var ArrayCollection $contacts
+     * @var Client $client
      * 
-     * @ORM\OneToMany(targetEntity="Contact", mappedBy="client", cascade="ALL")
-     * @Orm\OrderBy({"firstname" = "ASC"})
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="contacts", cascade="ALL")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
-    private $contacts;
-    
-    /**
-     * Constructer
-     */
-    public function __construct()
-    {
-		$this->contacts = new ArrayCollection;
-	}
-
+    private $client;
 
     /**
      * Get id
@@ -102,54 +89,54 @@ class Client
     }
 
     /**
-     * Set name
+     * Set firstname
      *
-     * @param string $name
-     * @return Client
+     * @param string $firstname
+     * @return Contact
      */
-    public function setName($name)
+    public function setFirstname($firstname)
     {
-        $this->name = $name;
+        $this->firstname = $firstname;
         return $this;
     }
 
     /**
-     * Get name
+     * Get firstname
      *
      * @return string 
      */
-    public function getName()
+    public function getFirstname()
     {
-        return $this->name;
+        return $this->firstname;
     }
 
     /**
-     * Set website
+     * Set lastname
      *
-     * @param string $website
-     * @return Client
+     * @param string $lastname
+     * @return Contact
      */
-    public function setWebsite($website)
+    public function setLastname($lastname)
     {
-        $this->website = $website;
+        $this->lastname = $lastname;
         return $this;
     }
 
     /**
-     * Get website
+     * Get lastname
      *
      * @return string 
      */
-    public function getWebsite()
+    public function getLastname()
     {
-        return $this->website;
+        return $this->lastname;
     }
 
     /**
      * Set created
      *
      * @param \DateTime $created
-     * @return Client
+     * @return Contact
      */
     public function setCreated(\DateTime $created)
     {
@@ -171,7 +158,7 @@ class Client
      * Set updated
      *
      * @param \DateTime $updated
-     * @return Client
+     * @return Contact
      */
     public function setUpdated(\DateTime $updated)
     {
@@ -193,7 +180,7 @@ class Client
      * Set deleted
      *
      * @param \DateTime $deleted
-     * @return Client
+     * @return Contact
      */
     public function setDeleted(\DateTime $deleted)
     {
@@ -210,28 +197,26 @@ class Client
     {
         return new DateTime($this->created);
     }
-    
+
     /**
-     * Add contact
-     * 
-     * @param Contact $contact
+     * Set client
+     *
+     * @param Client $client
+     * @return Contact
+     */
+    public function setClient(Client $client)
+    {
+        $this->client = $client;
+        return $this;
+    }
+
+    /**
+     * Get client
+     *
      * @return Client
      */
-    public function addContact(Contact $contact)
+    public function getClient()
     {
-		$this->contacts[] = $contact;
-		$contact->setClient($this);
-		
-		return $this;
-	}
-	
-	/**
-	 * Get contacts
-	 * 
-	 * @return ArrayCollection
-	 */
-	public function getContacts()
-	{
-		return $this->contacts;
-	}
+        return $this->client;
+    }
 }
