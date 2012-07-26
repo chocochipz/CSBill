@@ -33,6 +33,7 @@ class Client
      *
      * @ORM\Column(name="name", type="string", length=125, nullable=false)
      * @Assert\NotBlank()
+     * @Assert\MaxLength(125)
      */
     private $name;
 
@@ -41,6 +42,7 @@ class Client
      *
      * @ORM\Column(name="website", type="string", length=125, nullable=true)
      * @Assert\Url()
+     * @Assert\MaxLength(125)
      */
     private $website;
     
