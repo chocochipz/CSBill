@@ -90,7 +90,6 @@ class Client
 		$this->contacts = new ArrayCollection;
 	}
 
-
     /**
      * Get id
      *

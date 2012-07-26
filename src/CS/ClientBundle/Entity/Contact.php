@@ -3,9 +3,10 @@
 namespace CS\ClientBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
@@ -77,6 +78,21 @@ class Contact
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
+    
+    /**
+     * @var ArrayCollection $details
+     * 
+     * @ORM\OneToMany(targetEntity="ContactDetail", mappedBy="contact", cascade="ALL")
+     */
+    private $details;
+    
+    /**
+     * Constructer
+     */
+    public function __construct()
+    {
+		$this->details = new ArrayCollection;
+	}
 
     /**
      * Get id
@@ -219,4 +235,28 @@ class Contact
     {
         return $this->client;
     }
+    
+    /**
+     * Add detail
+     * 
+     * @param ContactDetail $detail
+     * @return Contact
+     */
+    public function addDetail(ContactDetail $detail)
+    {
+		$this->details[] = $detail;
+		$detail->setContact($this);
+		
+		return $this;
+	}
+	
+	/**
+	 * Get details
+	 * 
+	 * @return ArrayCollection
+	 */
+	public function getDetails()
+	{
+		return $this->details;
+	}
 }
