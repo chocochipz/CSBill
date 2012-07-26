@@ -9,20 +9,23 @@
  * file that was distributed with this source code.
  */
  
-namespace CS\CoreBundle\Controller;
+namespace CS\ClientBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use CS\CoreBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * @Route("/clients")
+ */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 }
