@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             
             new CS\CoreBundle\CSCoreBundle(),
             new CS\InstallerBundle\CSInstallerBundle(),
