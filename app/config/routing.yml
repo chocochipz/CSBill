@@ -8,6 +8,11 @@ CSInstallerBundle:
     type:     annotation
     prefix:   /
     
+CSUserBundle:
+    resource: "@CSUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 CSClientBundle:
     resource: "@CSClientBundle/Controller/"
     type:     annotation

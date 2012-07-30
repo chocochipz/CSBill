@@ -24,6 +24,7 @@ class AppKernel extends Kernel
             
             new CS\CoreBundle\CSCoreBundle(),
             new CS\InstallerBundle\CSInstallerBundle(),
+            new CS\UserBundle\CSUserBundle(),
             new CS\ClientBundle\CSClientBundle(),
         );
 

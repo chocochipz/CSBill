@@ -79,6 +79,7 @@ class Client
      * 
      * @ORM\OneToMany(targetEntity="Contact", mappedBy="client", cascade="ALL")
      * @Orm\OrderBy({"firstname" = "ASC"})
+     * @Assert\Valid()
      */
     private $contacts;
     

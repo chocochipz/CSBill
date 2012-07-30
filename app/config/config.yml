@@ -27,7 +27,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [ CSCoreBundle, CSInstallerBundle ]
+    bundles:        [ CSCoreBundle, CSInstallerBundle, CSUserBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
