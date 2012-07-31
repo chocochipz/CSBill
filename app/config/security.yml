@@ -24,6 +24,11 @@ security:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        installer:
+            pattern:  ^/installer/$
+            security: false
+            anonymous: ~
+
         login:
             pattern:  ^/login$
             security: false
