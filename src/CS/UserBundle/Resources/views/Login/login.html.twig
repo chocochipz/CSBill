@@ -1,12 +1,14 @@
 {% extends 'CSCoreBundle::layout.html.twig' %}
 
-{% block title %}{{ 'CSBill'|trans }}{% endblock %}
+{% set app_name = "CSBill" %}
+
+{% block title %}{{ app_name }}{% endblock %}
 
 {% block header %}
 	<nav class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="#">{{ 'CSBill'|trans }}</a>
+					<a class="brand" href="#">{{ app_name }}</a>
 				</div>
 			</div>
 		</nav>
@@ -17,7 +19,7 @@
 	    <div class="row">
 			<div class="offset3 span6">
 
-				 <legend><h2>{{ 'Login'|trans }}</h2></legend>
+				 <legend><h2>{{ "Login"|trans }}</h2></legend>
 
 			    {% if error %}
 			        <div class="alert alert-danger">
@@ -27,30 +29,37 @@
 			    {% endif %}
 
 			    <div class="well">
-				    <form action="{{ path("_security_check") }}" method="post" id="login">
-				        <div class="input-prepend">
-				            <label for="username">{{ 'Username'|trans }}</label>
-				            <span class="add-on"><i class="icon-user"></i></span>
-				            <input type="text" id="username" name="_username" placeholder="{{ 'Username'|trans }}" value="{{ last_username }}" />
+				    <form action="{{ path("_security_check") }}" method="post" id="login" class="form-vertical">
+				        <div class="input-prepend control-group">
+				            <label for="username" class="control-label">{{ "Username"|trans }}</label>
+				            <div class="controls">
+								<span class="add-on"><i class="icon-user"></i></span>
+								<input type="text" id="username" name="_username" placeholder="{{ "Username"|trans }}" value="{{ last_username }}" />
+							</div>
 				        </div>
 
-				        <div class="input-prepend">
-				            <label for="password">{{ 'Password'|trans }}</label>
-				            <span class="add-on"><i class="icon-lock"></i></span>
-				            <input type="password" id="password" placeholder="{{ 'Password'|trans }}" name="_password" />
+				        <div class="input-prepend control-group">
+				            <label for="password" class="control-label">{{ "Password"|trans }}</label>
+				            <div class="controls">
+								<span class="add-on"><i class="icon-lock"></i></span>
+								<input type="password" id="password" placeholder="{{ "Password"|trans }}" name="_password" />
+							</div>
 				        </div>
-
-				        <input type="checkbox" id="remember_me" name="_remember_me" checked />
-    					<label for="remember_me" style="display:inline">{{ 'Keep me logged in'|trans }}</label>
+				        
+				        <div class="control-group checkbox">
+							<label for="remember_me" class="checkbox control-label">{{ "Keep me logged in"|trans }}</label>
+							<div class="controls">
+								<input type="checkbox" id="remember_me" name="_remember_me" checked />
+							</div>
+						</div>
 
     					<div class="clear">
-    						<br />
-				        	<input type="submit" class="btn" value="{{ 'LOGIN'|trans }}" />
+				        	<input type="submit" class="btn" value="{{ "Login"|trans }}" />
 				        </div>
 				    </form>
 
 				    <hr />
-				    <a href="#">Forgot Password</a>
+				    <a href="#">{{ "Forgot Password"|trans }}</a>
 				</div>
 			</div>
 		</div>
