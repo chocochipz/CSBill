@@ -5,7 +5,7 @@ namespace CS\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -22,7 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Gedmo\Loggable()
  * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
-class User implements UserInterface, EquatableInterface
+class User implements AdvancedUserInterface, EquatableInterface
 {
     /**
      * @var integer $id
@@ -344,5 +344,48 @@ class User implements UserInterface, EquatableInterface
     public function getRoles()
     {
     	return $this->roles;
-    }    
+    }
+    
+    /**
+     * Check if user account is not expired
+     * 
+     * @return boolean
+     */
+    public function isAccountNonExpired()
+    {
+		// TODO : check if user account has not expired
+        return true;
+    }
+    
+    /**
+     * Check if user account is locked
+     * 
+     * @return boolean
+     */
+    public function isAccountNonLocked()
+    {
+		// TODO : check if user account is locked
+        return true;
+    }
+    
+    /**
+     * Check if user login credentials expired
+     * 
+     * @return boolean
+     */
+    public function isCredentialsNonExpired()
+    {
+		// TODO : check if user credentials expired
+        return true;
+    }
+    
+    /**
+     * Check if the user is active
+     * 
+     * @return boolean
+     */
+    public function isEnabled()
+    {
+        return $this->isActive();
+    }
 }
