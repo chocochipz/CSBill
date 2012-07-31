@@ -317,7 +317,7 @@ class User implements AdvancedUserInterface, EquatableInterface
 
     }
 
-    public function isEqualTo(UserInterface $user)
+    public function isEqualTo(\Symfony\Component\Security\Core\User\UserInterface $user)
     {
         return $this->username === $user->getUsername();
     }
