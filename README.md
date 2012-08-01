@@ -8,7 +8,7 @@ Open-Source General Billing Manager
 Requirements
 ------------
 
-CSBill is built on [Symfony2][1] which is only supported on PHP 5.3.3 and up. The same requirements that apply to Symfony2 apply to CSBill aswell.
+CSBill is built on [Symfony2][1] which is only supported on PHP 5.3.3 and up, however CSBill is only supported for PHP 5.3.4 and up. The same requirements that apply to Symfony2 apply to CSBill aswell.
 
 Be warned that PHP versions before 5.3.8 are known to be buggy and might not
 work for you:
