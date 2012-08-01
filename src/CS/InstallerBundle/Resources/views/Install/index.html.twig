@@ -1,36 +1,30 @@
 {% extends "CSInstallerBundle::layout.html.twig" %}
 
-{% block title %}{{ "CSBill Installation"|trans }}{% endblock %}
+{% block title %}{{ "CSBill Installation"|trans }} - {{ step.title|trans }}{% endblock %}
 
 {% block content %}
 	<fieldset>
 		<legend>
-			<h1>{{ "License Agreement"|trans }}</h1>
+			<h1>{{ step.title|trans }}</h1>
 		</legend>
 		
-		<div class="control-group">
-			<textarea rows="20" style="width:100%">{{ license }}</textarea>
-		</div>
+		{% if step.errors|length %}
+			{% for error in step.errors %}
+				<div class="alert alert-danger">
+			        	<button class="close" data-dismiss="alert">x</button>
+			        	{{ error|trans }}
+			        </div>
+			{% endfor %}
+		{% endif %}
 		
-		<div class="row">
-			<div class="control-group pull-left">
-				<input type="checkbox" id="accept_license" name="accept" /> <label class="inline" for="accept_license">{{ "I agree to the license agreement"|trans }}</label>
+		<form action="{{ path("_installer") }}" method="post">
+			<div class="row">
+				{% include step.view %}
+			
+				<div class="control-group pull-right" id="next_button">
+					<input type="submit" class="btn" value="{{ "Next"|trans }}" />
+				</div>
 			</div>
-		
-			<div class="control-group hide pull-right" id="next_button">
-				<input type="submit" class="btn" value="{{ "Next"|trans }}" />
-			</div>
-		</div>
+		</form>
 	</fieldset>
-{% endblock %}
-
-{% block script %}
-	$('#accept_license').on('change', function(){
-		if($(this).is(':checked'))
-		{
-			$('#next_button').show();
-		} else {
-			$('#next_button').hide();
-		}
-	});
 {% endblock %}

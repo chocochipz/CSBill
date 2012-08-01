@@ -11,9 +11,8 @@
 
 namespace CS\InstallerBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Process\Process;
-use Symfony\Component\Finder\Finder;
+use CS\CoreBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -29,28 +28,18 @@ class InstallController extends Controller
      */
     public function indexAction()
     {
-		// TODO : add this logic to service, so we only need to call the service to get the correct step
-		$root_dir = dirname($this->get('kernel')->getRootDir());
-		
-		$finder = new Finder();
-		$finder->files()->in($root_dir)->depth('== 0')->filter(function(\SplFileInfo $file){
-				if($file->getExtension() !== '')
-				{
-					return false;
-				}
-			});
-		
-		$license = '';
-		
-		foreach($finder as $file)
+		if($this->getRequest()->getMethod() === 'POST')
 		{
-			if(strtolower($file->getBasename()) === 'license')
+			$response = $this->get('installer')->validateStep();
+			
+			if($response instanceof RedirectResponse)
 			{
-				$license = $file->getContents();
-				break;
+				return $response;
 			}
 		}
-
-        return array('license' => $license);
+		
+		$step = $this->get('installer')->getStep();
+        
+        return array('step' => $step);
     }
 }
