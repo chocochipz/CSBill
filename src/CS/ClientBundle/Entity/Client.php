@@ -47,10 +47,10 @@ class Client
      * @Assert\MaxLength(125)
      */
     private $website;
-    
+
     /**
      * @var string $created
-     * 
+     *
      * @ORM\Column(name="created", type="datetime")
      * @Gedmo\Timestampable(on="create")
      * @Assert\DateTime()
@@ -59,7 +59,7 @@ class Client
 
     /**
      * @var string $updated
-     * 
+     *
      * @ORM\Column(name="updated", type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @Assert\DateTime()
@@ -68,33 +68,33 @@ class Client
 
     /**
      * @var string $deleted
-     * 
+     *
      * @ORM\Column(name="deleted", type="datetime", nullable=true)
      * @Assert\DateTime()
      */
     private $deleted;
-    
+
     /**
      * @var ArrayCollection $contacts
-     * 
+     *
      * @ORM\OneToMany(targetEntity="Contact", mappedBy="client", cascade="ALL")
      * @Orm\OrderBy({"firstname" = "ASC"})
      * @Assert\Valid()
      */
     private $contacts;
-    
+
     /**
      * Constructer
      */
     public function __construct()
     {
-		$this->contacts = new ArrayCollection;
-	}
+        $this->contacts = new ArrayCollection;
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -104,19 +104,20 @@ class Client
     /**
      * Set name
      *
-     * @param string $name
+     * @param  string $name
      * @return Client
      */
     public function setName($name)
     {
         $this->name = $name;
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -126,19 +127,20 @@ class Client
     /**
      * Set website
      *
-     * @param string $website
+     * @param  string $website
      * @return Client
      */
     public function setWebsite($website)
     {
         $this->website = $website;
+
         return $this;
     }
 
     /**
      * Get website
      *
-     * @return string 
+     * @return string
      */
     public function getWebsite()
     {
@@ -148,19 +150,20 @@ class Client
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Client
      */
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -170,19 +173,20 @@ class Client
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Client
      */
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -192,46 +196,47 @@ class Client
     /**
      * Set deleted
      *
-     * @param \DateTime $deleted
+     * @param  \DateTime $deleted
      * @return Client
      */
     public function setDeleted(\DateTime $deleted)
     {
         $this->deleted = $deleted;
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeleted()
     {
         return new DateTime($this->created);
     }
-    
+
     /**
      * Add contact
-     * 
-     * @param Contact $contact
+     *
+     * @param  Contact $contact
      * @return Client
      */
     public function addContact(Contact $contact)
     {
-		$this->contacts[] = $contact;
-		$contact->setClient($this);
-		
-		return $this;
-	}
-	
-	/**
-	 * Get contacts
-	 * 
-	 * @return ArrayCollection
-	 */
-	public function getContacts()
-	{
-		return $this->contacts;
-	}
+        $this->contacts[] = $contact;
+        $contact->setClient($this);
+
+        return $this;
+    }
+
+    /**
+     * Get contacts
+     *
+     * @return ArrayCollection
+     */
+    public function getContacts()
+    {
+        return $this->contacts;
+    }
 }

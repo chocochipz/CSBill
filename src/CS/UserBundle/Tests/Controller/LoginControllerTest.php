@@ -20,7 +20,7 @@ class LoginControllerTest extends WebTestCase
         $client = static::createClient();
 
         $crawler = $client->request('GET', 'app.php/login');
-        
+
         $this->assertTrue($crawler->filter('html:contains("login")')->count() > 0);
     }
 }

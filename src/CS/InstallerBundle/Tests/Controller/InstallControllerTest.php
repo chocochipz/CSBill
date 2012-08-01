@@ -20,7 +20,7 @@ class InstallControllerTest extends WebTestCase
         /*$client = static::createClient();
 
         $crawler = $client->request('GET', '/installer/');
-        
+
         $this->assertTrue($crawler->filter('html:contains("install")')->count() > 0);*/
     }
 }

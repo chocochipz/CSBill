@@ -7,7 +7,7 @@
 		<legend>
 			<h1>{{ step.title|trans }}</h1>
 		</legend>
-		
+
 		{% if step.errors|length %}
 			{% for error in step.errors %}
 				<div class="alert alert-danger">
@@ -16,11 +16,11 @@
 			        </div>
 			{% endfor %}
 		{% endif %}
-		
+
 		<form action="{{ path("_installer") }}" method="post">
 			<div class="row">
 				{% include step.view %}
-			
+
 				<div class="control-group pull-right" id="next_button">
 					<input type="submit" class="btn" value="{{ "Next"|trans }}" />
 				</div>

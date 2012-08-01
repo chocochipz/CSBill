@@ -5,8 +5,6 @@ namespace CS\ClientBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * CS\ClientBundle\Entity\ContactDetail
@@ -32,10 +30,10 @@ class ContactDetail
      * @Assert\NotBlank()
      */
     private $value;
-    
+
     /**
      * @var Contact $contact
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Contact", inversedBy="details", cascade="ALL")
      * @ORM\JoinColumn(name="contact_id", referencedColumnName="id")
      */
@@ -43,7 +41,7 @@ class ContactDetail
 
     /**
      * @var ContactType $type
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="ContactType", inversedBy="details", cascade="ALL")
      * @ORM\JoinColumn(name="contact_type_id", referencedColumnName="id")
      */
@@ -52,7 +50,7 @@ class ContactDetail
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -62,34 +60,36 @@ class ContactDetail
     /**
      * Set value
      *
-     * @param string $value
+     * @param  string        $value
      * @return ContactDetail
      */
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue()
     {
         return $this->value;
     }
-    
+
     /**
      * Set contact
      *
-     * @param Contact $contact
+     * @param  Contact       $contact
      * @return ContactDetail
      */
     public function setContact(Contact $contact)
     {
         $this->contact = $contact;
+
         return $this;
     }
 
@@ -106,12 +106,13 @@ class ContactDetail
     /**
      * Set type
      *
-     * @param ContactType $type
+     * @param  ContactType   $type
      * @return ContactDetail
      */
     public function setType(ContactType $type)
     {
         $this->type = $type;
+
         return $this;
     }
 

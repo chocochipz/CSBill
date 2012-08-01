@@ -11,122 +11,123 @@ use Symfony\Component\DependencyInjection\Container;
  */
 abstract class Step implements StepInterface, \ArrayAccess
 {
-	/**
-	 * Contains all errors for current step
-	 * 
-	 * @var array $errors
-	 */
-	protected $errors = array();
+    /**
+     * Contains all errors for current step
+     *
+     * @var array $errors
+     */
+    protected $errors = array();
 
-	/**
-	 * Contains an instance of the service container
-	 * 
-	 * @var Container $container
-	 * 
-	 * @DI\Inject("service_container")
-	 */
-	protected $container;
-	
-	/**
-	 * Set the instance of the service container
-	 * 
-	 * @param Container $container
-	 * @return Step
-	 */
-	public function setContainer(Container $container)
-	{
-		$this->container = $container;
-		return $this;
-	}
-	
-	/**
-	 * Gets a service from the service container
-	 * 
-	 * @param string $service
-	 * @return mixed
-	 */
-	public function get($service = '')
-	{
-		return $this->container->get($service);
-	}
-	
-	/**
-	 * Adds an error to the errors array
-	 * 
-	 * @param string $error
-	 * @return Step
-	 */
-	public function addError($error)
-	{
-		$this->errors[] = $error;
-		
-		return $this;
-	}
-	
-	/**
-	 * Returns all the errors for the current installation step
-	 * 
-	 * @return array
-	 */
-	public function getErrors()
-	{
-		return $this->errors;
-	}
-	
-	/**
-	 * Check if the property exists for the current offset when using \ArrayAccess
-	 * 
-	 * @param mixed $offset
-	 * @return boolean
-	 */
-	public function offsetExists($offset)
-	{
-		return isset($this->{$offset});
-	}
-	
-	/**
-	 * Gets a property when using \ArrayAccess
-	 * 
-	 * @param mixed $offset
-	 * @return mixed
-	 */
-	public function offsetGet($offset)
-	{
-		return $this->{$offset};
-	}
-	
-	/**
-	 * Sets the value for a property when using \ArrayAccess
-	 * 
-	 * @param mixed $offset
-	 * @param mixed $value
-	 */
-	public function offsetSet($offset, $value)
-	{
-		$this->{$offset} = $value;
-	}
-	
-	/**
-	 * Sets the value for a property to null when using \ArrayAccess
-	 * 
-	 * @param mixed $offset
-	 */
-	public function offsetUnset($offset)
-	{
-		$this->{$offset} = null;
-	}
-	
-	/**
-	 * TODO: this will retrieve the data stored in the session for the current step
-	 * 
-	 * @return array
-	 */
-	public function getData()
-	{
-		
-	}
-	
-	abstract function validate($request = array());
-	abstract function start();
-	abstract function process($request = array());
+    /**
+     * Contains an instance of the service container
+     *
+     * @var Container $container
+     *
+     * @DI\Inject("service_container")
+     */
+    protected $container;
+
+    /**
+     * Set the instance of the service container
+     *
+     * @param  Container $container
+     * @return Step
+     */
+    public function setContainer(Container $container)
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+
+    /**
+     * Gets a service from the service container
+     *
+     * @param  string $service
+     * @return mixed
+     */
+    public function get($service = '')
+    {
+        return $this->container->get($service);
+    }
+
+    /**
+     * Adds an error to the errors array
+     *
+     * @param  string $error
+     * @return Step
+     */
+    public function addError($error)
+    {
+        $this->errors[] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Returns all the errors for the current installation step
+     *
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * Check if the property exists for the current offset when using \ArrayAccess
+     *
+     * @param  mixed   $offset
+     * @return boolean
+     */
+    public function offsetExists($offset)
+    {
+        return isset($this->{$offset});
+    }
+
+    /**
+     * Gets a property when using \ArrayAccess
+     *
+     * @param  mixed $offset
+     * @return mixed
+     */
+    public function offsetGet($offset)
+    {
+        return $this->{$offset};
+    }
+
+    /**
+     * Sets the value for a property when using \ArrayAccess
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value)
+    {
+        $this->{$offset} = $value;
+    }
+
+    /**
+     * Sets the value for a property to null when using \ArrayAccess
+     *
+     * @param mixed $offset
+     */
+    public function offsetUnset($offset)
+    {
+        $this->{$offset} = null;
+    }
+
+    /**
+     * TODO: this will retrieve the data stored in the session for the current step
+     *
+     * @return array
+     */
+    public function getData()
+    {
+
+    }
+
+    abstract public function validate($request = array());
+    abstract public function start();
+    abstract public function process($request = array());
 }

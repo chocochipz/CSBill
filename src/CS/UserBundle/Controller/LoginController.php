@@ -33,7 +33,7 @@ class LoginController extends Controller
      */
     public function securityCheckAction()
     {
-    	// The security layer will intercept this request
+        // The security layer will intercept this request
     }
 
     /**
@@ -41,6 +41,6 @@ class LoginController extends Controller
      */
     public function logoutAction()
     {
-    	// The security layer will intercept this request
+        // The security layer will intercept this request
     }
 }

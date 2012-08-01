@@ -44,10 +44,10 @@ class Contact
      * @Assert\MaxLength(125)
      */
     private $lastname;
-    
+
     /**
      * @var string $created
-     * 
+     *
      * @ORM\Column(name="created", type="datetime")
      * @Gedmo\Timestampable(on="create")
      * @Assert\DateTime()
@@ -56,7 +56,7 @@ class Contact
 
     /**
      * @var string $updated
-     * 
+     *
      * @ORM\Column(name="updated", type="datetime")
      * @Gedmo\Timestampable(on="update")
      * @Assert\DateTime()
@@ -65,39 +65,39 @@ class Contact
 
     /**
      * @var string $deleted
-     * 
+     *
      * @ORM\Column(name="deleted", type="datetime", nullable=true)
      * @Assert\DateTime()
      */
     private $deleted;
-    
+
     /**
      * @var Client $client
-     * 
+     *
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="contacts", cascade="ALL")
      * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      */
     private $client;
-    
+
     /**
      * @var ArrayCollection $details
-     * 
+     *
      * @ORM\OneToMany(targetEntity="ContactDetail", mappedBy="contact", cascade="ALL")
      */
     private $details;
-    
+
     /**
      * Constructer
      */
     public function __construct()
     {
-		$this->details = new ArrayCollection;
-	}
+        $this->details = new ArrayCollection;
+    }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -107,19 +107,20 @@ class Contact
     /**
      * Set firstname
      *
-     * @param string $firstname
+     * @param  string  $firstname
      * @return Contact
      */
     public function setFirstname($firstname)
     {
         $this->firstname = $firstname;
+
         return $this;
     }
 
     /**
      * Get firstname
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -129,19 +130,20 @@ class Contact
     /**
      * Set lastname
      *
-     * @param string $lastname
+     * @param  string  $lastname
      * @return Contact
      */
     public function setLastname($lastname)
     {
         $this->lastname = $lastname;
+
         return $this;
     }
 
     /**
      * Get lastname
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -151,19 +153,20 @@ class Contact
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime $created
      * @return Contact
      */
     public function setCreated(\DateTime $created)
     {
         $this->created = $created;
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -173,19 +176,20 @@ class Contact
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime $updated
      * @return Contact
      */
     public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -195,19 +199,20 @@ class Contact
     /**
      * Set deleted
      *
-     * @param \DateTime $deleted
+     * @param  \DateTime $deleted
      * @return Contact
      */
     public function setDeleted(\DateTime $deleted)
     {
         $this->deleted = $deleted;
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDeleted()
     {
@@ -217,12 +222,13 @@ class Contact
     /**
      * Set client
      *
-     * @param Client $client
+     * @param  Client  $client
      * @return Contact
      */
     public function setClient(Client $client)
     {
         $this->client = $client;
+
         return $this;
     }
 
@@ -235,28 +241,28 @@ class Contact
     {
         return $this->client;
     }
-    
+
     /**
      * Add detail
-     * 
-     * @param ContactDetail $detail
+     *
+     * @param  ContactDetail $detail
      * @return Contact
      */
     public function addDetail(ContactDetail $detail)
     {
-		$this->details[] = $detail;
-		$detail->setContact($this);
-		
-		return $this;
-	}
-	
-	/**
-	 * Get details
-	 * 
-	 * @return ArrayCollection
-	 */
-	public function getDetails()
-	{
-		return $this->details;
-	}
+        $this->details[] = $detail;
+        $detail->setContact($this);
+
+        return $this;
+    }
+
+    /**
+     * Get details
+     *
+     * @return ArrayCollection
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
 }
