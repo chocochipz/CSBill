@@ -339,11 +339,11 @@ class User implements AdvancedUserInterface, EquatableInterface
 	/**
 	 * Get roles
 	 * 
-	 * @return ArrayCollection
+	 * @return array
 	 */
     public function getRoles()
     {
-    	return $this->roles;
+    	return $this->roles->toArray();
     }
     
     /**
