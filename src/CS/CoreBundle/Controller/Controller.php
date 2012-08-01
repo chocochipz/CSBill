@@ -12,7 +12,5 @@
 namespace CS\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as CoreController;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class Controller extends CoreController {}
