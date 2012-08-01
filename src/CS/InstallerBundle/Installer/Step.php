@@ -125,9 +125,5 @@ abstract class Step implements StepInterface, \ArrayAccess
     public function getData()
     {
 
-    }
-
-    abstract public function validate($request = array());
-    abstract public function start();
-    abstract public function process($request = array());
+    }    
 }
