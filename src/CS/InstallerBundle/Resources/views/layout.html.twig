@@ -24,22 +24,42 @@
 	<body>
 		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 		<header>
-		
+			<nav class="navbar navbar-fixed-top">
+				<div class="navbar-inner">
+					<div class="container">
+						<a class="brand" href="#">{{ "CSBill Installation"|trans }}</a>
+					</div>
+				</div>
+			</nav>
 		</header>
 
 		<div role="main" class="container">
 			<div class="row">
-				<aside class="span2 progress">
-					Installation Progress
+				<aside class="span3 installation-progress">
+					<div class="well">
+						<ul class="nav nav-list">
+							<li class="nav-header">
+								{{ "Installation Progress"|trans }}
+							</li>
+							<li class="active">
+								<a href="#">{{ "License Agreement"|trans }}</a>
+							</li>
+							<li>
+								<a href="#">{{ "System Check"|trans }}</a>
+							</li>
+						</ul>
+					</div>
 				</aside>
 			
-				<section class="span10">
+				<section class="span9 content">
 					{{ block('content') }}
 				</section>
 			</div>
 		</div>
+		
+		<hr />
 
-		<footer>
+		<footer align="center">
 			<small>Powered by <a href="#">CSBill</a>
 		</footer>
 	  
@@ -50,7 +70,13 @@
 			"@CSCoreBundle/Resources/public/js//script.js"
 			filter="?yui_js"
 		%}
-			<script defer src="{{ asset_url }}"></script>
+			<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
+		
+		<script>
+			$(function(){
+				{{ block('script') }}
+			});
+		</script>
 	</body>
 </html>
