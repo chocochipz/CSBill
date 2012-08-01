@@ -50,9 +50,11 @@ After all the depencies has been installed, the last step is to install all the 
 
 Now you have a fully working copy of CSBill, which you can use to modify or dig around in the code.
 
-The stylesheets is built with [lesscss][3], so you need nodejs and less installed in your system to be able to parse the less files to CSS.
+**Note:** This is not the recommended way to install and use CSBill. This is only for developers who wish to look through the code, submit patches, customise the code etc. or for anybody that wish to poke through the source code.
 
-*Note:* This is not the recommended way to install and use CSBill. This is only for developers who wish to look through the code, submit patches, customise the code etc. or for anybody that wish to poke through the source code.
+#### Lesscss
+
+The stylesheets is built with [lesscss][3], so you need nodejs and less installed in your system to be able to parse the less files to CSS.
 
 Features
 --------
@@ -72,7 +74,7 @@ Contributing
 
 If you wish to contribute to CSBill, please fork it, make your changes, and submit a pull request.
 
-All pull requests *must* pass the unit tests, unless specified. If a pull request does not pass existing unit tests, then new unit tests must acompany the pull request, with a description as to why the unit tests fail.
+All pull requests **must** pass the unit tests, unless specified. If a pull request does not pass existing unit tests, then new unit tests must acompany the pull request, with a description as to why the unit tests fail.
 
 All pull requests must conform to the standards of coding currently in the application. Pull requests that do not follow standards, won't be denied, but we will ask you to change the code before we accept the pull request.
 
