@@ -11,14 +11,14 @@ class SystemCheck extends Step
     /**
      * The view to render for this installation step
      *
-     * @param string $view;
+     * @var string $view;
      */
     public $view = 'CSInstallerBundle:Install:system_check.html.twig';
 
     /**
      * The title to display when this installationj step is active
      *
-     * @param string $title
+     * @var string $title
      */
     public $title = 'System Check';
     
@@ -39,10 +39,15 @@ class SystemCheck extends Step
     {
 		$this->start();
 		
+		$error = false;
+		
 		foreach($this->check['recommended']['values'] as $value)
 		{
 			if(substr(trim($value), 0, 2) !== 'OK')
 			{
+				$value = str_replace(array('ERROR', 'WARNING'), '', $value);
+				$this->addError(sprintf('The following requirement were not met: %s', $value));
+				$this->addError('Please make sure all the requirements are met before continuing with the installation');
 				return false;
 			}
 		}
@@ -79,6 +84,13 @@ class SystemCheck extends Step
 		$this->check = array('recommended' => $recommended, 'optional' => $optional);
     }
     
+    /**
+     * Parses through the output of the system check, and extracts the requirements
+     * 
+     * @param array $output The ouput generated from the system check
+     * @param string $header the header to look for to get the requirements
+     * @return array
+     */
     public function getOutput($output = array(), $header = '')
     {
 		while(($line = next($output)) !== false)

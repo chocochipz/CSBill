@@ -88,9 +88,9 @@ class Installer
             // save all the request data in the session so we can use it later
             $this->setSession($step, $request);
 
-            $this->getContainer()->get('router')->generate('_installer');
+            $route = $this->getContainer()->get('router')->generate('_installer');
 
-            return new RedirectResponse();
+            return new RedirectResponse($route);
         }
 
         return false;
