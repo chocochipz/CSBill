@@ -74,8 +74,16 @@ class Installer
             $step = $this->getSession('step');
 
             $key = array_search($step, $this->steps);
-
-            $this->step($this->steps[++$key]);
+            
+            $key++;
+            
+            if(!isset($this->steps[$key]))
+            {
+				var_dump('end of configuration! redirect to success page!');
+				exit;
+			}
+            
+            $this->step($this->steps[$key]);
 
             // save all the request data in the session so we can use it later
             $this->setSession($step, $request);

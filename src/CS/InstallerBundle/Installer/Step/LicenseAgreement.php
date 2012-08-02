@@ -11,7 +11,7 @@ class LicenseAgreement extends Step
     /**
      * The view to render for this installation step
      *
-     * @param string #view;
+     * @param string $view;
      */
     public $view = 'CSInstallerBundle:Install:license_agreement.html.twig';
 
