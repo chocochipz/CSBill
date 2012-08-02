@@ -16,7 +16,7 @@ class SystemCheck extends Step
     public $view = 'CSInstallerBundle:Install:system_check.html.twig';
 
     /**
-     * The title to display when this installationj step is active
+     * The title to display when this installation step is active
      *
      * @var string $title
      */

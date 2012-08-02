@@ -81,7 +81,7 @@ class DatabaseConfig extends Step
 		{
 			$connectionFactory = $this->container->get('doctrine.dbal.connection_factory');
 			$connection = $connectionFactory->createConnection(array(
-				'driver' => 'pdo_'.$request['database_driver'],
+				'driver' => $request['database_driver'],
 				'user' => $request['database_user'],
 				'password' => $request['database_password'],
 				'host' => $request['database_host'],
@@ -111,9 +111,7 @@ class DatabaseConfig extends Step
 		$this->writeConfigFile($request);
 		
 		$this->executeMigrations();
-		// TODO: configuration file is written, now we need to install the database migrations and fixtures
-		var_dump('Run Doctrine Fixtures');
-		exit;
+		$this->executeFixtures();
 	}
 
     /**
@@ -142,11 +140,9 @@ class DatabaseConfig extends Step
 		try {
 			$value = $yaml->parse(file_get_contents($config));
 		} catch (ParseException $e) {
-			printf("Unable to parse the YAML string: %s. Your installation might be corrupt.", $e->getMessage());
+			throw new \RuntimeException("Unable to parse the YAML string: %s. Your installation might be corrupt.", $e->getMessage());
 			exit;
 		}
-		
-		$params['database_driver'] = 'pdo_'.$params['database_driver'];
 		
 		foreach($params as $key => $param)
 		{
@@ -168,17 +164,34 @@ class DatabaseConfig extends Step
 	 */
 	public function executeMigrations()
 	{
-		$process = new Process('php ../app/console doctrine:migrations:migrate --no-interaction');
+		$this->_runProcess('php ../app/console doctrine:migrations:migrate --no-interaction');
+	}
+	
+	/**
+	 * Load all fictures
+	 * 
+	 * @return void
+	 */
+	public function executeFixtures()
+	{
+		$this->_runProcess('php ../app/console doctrine:fixtures:load');
+	}
+	
+	/**
+	 * Runs a specific command with the Process Component
+	 * 
+	 * @param string $command The command that needs to be run
+	 * @return string The output of the processed command
+	 */
+	private function _runProcess($command = '')
+	{
+		$process = new Process($command);
 		$process->setTimeout(3600);
-		$process->run(function ($type, $buffer) {
-			if ('err' === $type) {
-				echo 'ERR > '.$buffer;
-			} else {
-				echo 'OUT > '.$buffer;
-			}
-		});
+		$process->run();
 		if (!$process->isSuccessful()) {			
 			throw new \RuntimeException($process->getErrorOutput());
 		}
+		
+		return $process->getOutput();
 	}
 }

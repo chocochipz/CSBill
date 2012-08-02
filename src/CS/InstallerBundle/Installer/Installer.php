@@ -22,7 +22,7 @@ class Installer
      *
      * @param array $steps
      */
-    protected $steps = array('license_agreement', 'system_check', 'database_config');
+    protected $steps = array('license_agreement', 'system_check', 'database_config', 'system_information');
 
     /**
      * Object instance of current step

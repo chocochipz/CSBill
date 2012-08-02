@@ -16,7 +16,7 @@ class LicenseAgreement extends Step
     public $view = 'CSInstallerBundle:Install:license_agreement.html.twig';
 
     /**
-     * The title to display when this installationj step is active
+     * The title to display when this installation step is active
      *
      * @var string $title
      */
