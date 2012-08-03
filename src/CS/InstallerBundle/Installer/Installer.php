@@ -154,6 +154,26 @@ class Installer
 
         return $this;
     }
+    
+    /**
+     * Returns an array of all available steps, formatted to human-readible name
+     * 
+     * @return array
+     */
+    public function getSteps()
+    {
+		return $this->steps;
+	}
+	
+	/**
+	 * Return the current active step
+	 * 
+	 * @return string
+	 */
+	public function active()
+	{
+		return $this->getSession('step');
+	}
 
     /**
      * Creates an instance of the necessary step class

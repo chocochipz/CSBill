@@ -13,6 +13,7 @@ namespace CS\InstallerBundle\Listener;
 
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\HttpKernel;
 
 use JMS\DiExtraBundle\Annotation as DI;
 
@@ -52,7 +53,7 @@ class RequestListener
 				return strpos($event->getRequest()->getPathInfo(), $route);
 			}, $this->core_paths);
 		
-		if(!in_array($route, $this->core_routes) && !in_array(true, $map))
+		if(!in_array($route, $this->core_routes) && !in_array(true, $map) && $event->getRequestType() === HttpKernel::MASTER_REQUEST)
 		{
 			// first we check if we can connect to the database
 			try {

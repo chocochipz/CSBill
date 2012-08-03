@@ -36,8 +36,9 @@ class InstallController extends Controller
             }
         }
 
-        $step = $this->get('installer')->getStep();
+        $installer = $this->get('installer');
+        $step = $installer->getStep();
 
-        return array('step' => $step);
+        return array('step' => $step, 'installer' => $installer);
     }
 }

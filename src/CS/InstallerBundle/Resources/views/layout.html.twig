@@ -41,12 +41,11 @@
 							<li class="nav-header">
 								{{ "Installation Progress"|trans }}
 							</li>
-							<li class="active">
-								<a href="#">{{ "License Agreement"|trans }}</a>
-							</li>
-							<li>
-								<a href="#">{{ "System Check"|trans }}</a>
-							</li>
+							{% for progress in installer.steps %}
+								<li{% if installer.active is sameas(progress) %} class="active"{% endif %}>
+									<a href="#">{{ progress|humanize|title|trans }}</a>
+								</li>
+							{% endfor %}
 						</ul>
 					</div>
 				</aside>
