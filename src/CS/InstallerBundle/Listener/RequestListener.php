@@ -22,14 +22,9 @@ use JMS\DiExtraBundle\Annotation as DI;
 class RequestListener
 {
     /**
-     * @DI\Inject("router")
+     * @DI\Inject("service_container")
      */
-    public $router;
-
-    /**
-     * @DI\Inject("database_connection")
-     */
-    public $db;
+    public $container;
 
     /**
      * @DI\Observe("kernel.request", priority = 10)
@@ -46,14 +41,14 @@ class RequestListener
 
         if ($route === '') {
             try {
-                $this->db->connect();
+                $this->container->get('database_connection')->connect();
             } catch (\Exception $e) {
-                $response = new RedirectResponse($this->router->generate('_installer'));
+                $response = new RedirectResponse($this->container->get('router')->generate('_installer'));
 
                 return $event->setResponse($response);
             }
 
-            $response = new RedirectResponse($this->router->generate('_dashboard'));
+            $response = new RedirectResponse($this->container->get('router')->generate('_dashboard'));
 
             return $event->setResponse($response);
         }
