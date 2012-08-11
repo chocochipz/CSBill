@@ -153,7 +153,7 @@ class DatabaseConfig extends Step
 		// sets a unique value for the secret token
 		// We do this when writing the database configuration, as this is the only time (for now) that we modify the parameters.yml file
 		// We still need to add an extra step so we can write smtp settings
-		$parameters['secret'] = md5(uniqid(php_uname('n'), true));
+		$value['secret'] = md5(uniqid(php_uname('n'), true));
 
 		$dumper = new Dumper();
 

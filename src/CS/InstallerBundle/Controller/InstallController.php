@@ -41,4 +41,13 @@ class InstallController extends Controller
 
         return array('step' => $step, 'installer' => $installer);
     }
+    
+    /**
+     * @Route("/success", name="_installer_success")
+     * @Template()
+     */
+    public function successAction()
+    {
+		return array();
+	}
 }
