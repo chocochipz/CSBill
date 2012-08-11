@@ -29,6 +29,11 @@ security:
             security: false
             anonymous: ~
 
+        installer_success:
+            pattern:  ^/installer/success
+            security: false
+            anonymous: ~
+
         login:
             pattern:  ^/login$
             security: false

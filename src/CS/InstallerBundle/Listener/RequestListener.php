@@ -78,8 +78,16 @@ class RequestListener
 			$repository = $this->container->get('doctrine.orm.entity_manager')->getRepository('CSUserBundle:User');
 			
 			try {
-				$repository->find('u')->execute();
+				$users = $repository->createQueryBuilder('u')->getQuery()->execute();
+				
+				if(count($users) === 0)
+				{
+					throw new \RuntimeException('The users table does not exist');
+				}
 			} catch(\PDOException $e)
+			{
+				throw new \RuntimeException($e->getMessage());
+			} catch(\Exception $e)
 			{
 				$response = new RedirectResponse($this->container->get('router')->generate('_installer'));
 
@@ -89,15 +97,12 @@ class RequestListener
 			// check if there are any users loaded. If not, run the installer
 			$users = $repository->findAll();
 			
+			$router = $this->container->get('router');
+			
 			// TODO: get different way of checking if the application is installed or not
-			if(count($users) === 0)
-			{
-				$response = new RedirectResponse($this->container->get('router')->generate('_installer'));
-			} else {
-				$response = new RedirectResponse($this->container->get('router')->generate('_dashboard'));
-			}
+			$response = count($users) === 0 ? new RedirectResponse($router->generate('_installer')) : null;
 
-			return $event->setResponse($response);
+			return $response ? $event->setResponse($response) : null;
 		}
     }
 }

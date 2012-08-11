@@ -35,20 +35,22 @@
 
 		<div role="main" class="container">
 			<div class="row-fluid">
-				<aside class="span3 installation-progress">
-					<div class="well">
-						<ul class="nav nav-list">
-							<li class="nav-header">
-								{{ "Installation Progress"|trans }}
-							</li>
-							{% for progress in installer.steps %}
-								<li{% if installer.active is sameas(progress) %} class="active"{% endif %}>
-									<a href="#">{{ progress|humanize|title|trans }}</a>
+				{% block sidebar %}
+					<aside class="span3 installation-progress">
+						<div class="well">
+							<ul class="nav nav-list">
+								<li class="nav-header">
+									{{ "Installation Progress"|trans }}
 								</li>
-							{% endfor %}
-						</ul>
-					</div>
-				</aside>
+								{% for progress in installer.steps %}
+									<li{% if installer.active is sameas(progress) %} class="active"{% endif %}>
+										<a href="#">{{ progress|humanize|title|trans }}</a>
+									</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</aside>
+				{% endblock %}
 
 				<section class="span9 content">
 					{{ block('content') }}

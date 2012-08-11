@@ -1,0 +1,21 @@
+{% extends "CSInstallerBundle::layout.html.twig" %}
+
+{% block title %}{{ "CSBill Installation Success"|trans }}{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
+	<fieldset>
+		<legend>
+			<h1>{{ "Success"|trans }}</h1>
+		</legend>
+
+		<div class="well">
+			<h3>{{ "You have successfully installed CSBill!"|trans }}</h3>
+			<hr />
+			<div class="clear">
+				<a href="{{ path('_dashboard') }}" class="btn">{{ "Log In"|trans }}</a>
+			</div>
+		</div>
+	</fieldset>
+{% endblock %}
