@@ -79,8 +79,9 @@ class Installer
             
             if(!isset($this->steps[$key]))
             {
-				var_dump('end of configuration! redirect to success page!');
-				exit;
+				$route = $this->getContainer()->get('router')->generate('_installer_success');
+
+				return new RedirectResponse($route);
 			}
             
             $this->step($this->steps[$key]);
