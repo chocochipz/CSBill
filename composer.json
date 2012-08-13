@@ -1,6 +1,6 @@
 {
-    "name": "symfony/framework-standard-edition",
-    "description": "The \"Symfony Standard Edition\" distribution",
+    "name": "customscripts/symfony-standard",
+    "description": "Standard Symfony2 distribution with little modifications to easier get started developing",
     "autoload": {
         "psr-0": { "": "src/" }
     },
