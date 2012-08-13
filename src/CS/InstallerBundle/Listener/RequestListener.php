@@ -58,7 +58,7 @@ class RequestListener
 			// first we check if we can connect to the database
 			try {
 				$this->container->get('database_connection')->connect();
-			} catch (\Exception $e) {
+			} catch (\PDOException $e) {
 				// TODO: if we can't connect to the database, check if the application is installed or not.
 				// If not, go to the installer. If application is already installed, then just display an error message
 				$response = new RedirectResponse($this->container->get('router')->generate('_installer'));
@@ -79,15 +79,12 @@ class RequestListener
 			
 			try {
 				$users = $repository->createQueryBuilder('u')->getQuery()->execute();
-				
+
 				if(count($users) === 0)
 				{
 					throw new \RuntimeException('The users table does not exist');
 				}
 			} catch(\PDOException $e)
-			{
-				throw new \RuntimeException($e->getMessage());
-			} catch(\Exception $e)
 			{
 				$response = new RedirectResponse($this->container->get('router')->generate('_installer'));
 
