@@ -6,6 +6,7 @@
     },
     "require": {
         "php": ">=5.3.3",
+        "customscripts/cs-core-bundle": "dev-master",
         "symfony/symfony": "2.1.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "dev-master",
@@ -17,7 +18,10 @@
         "sensio/framework-extra-bundle": "dev-master",
         "sensio/generator-bundle": "dev-master",
         "jms/security-extra-bundle": "1.2.*",
-        "jms/di-extra-bundle": "1.1.*"
+        "jms/di-extra-bundle": "1.1.*",
+        
+        "stof/doctrine-extensions-bundle": "dev-master"
+        "friendsofsymfony/jsrouting-bundle": "dev-master",
     },
     "scripts": {
         "post-install-cmd": [
