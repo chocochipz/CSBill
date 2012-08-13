@@ -21,7 +21,7 @@ class LoadRoles implements FixtureInterface {
         $admin = new Role();
         $admin->setName('admin');
         $admin->setRole('ROLE_ADMIN');
-        $manager->persist($_admin);        
+        $manager->persist($admin);        
         
         // ROLE_CLIENT
         $client = new Role();
