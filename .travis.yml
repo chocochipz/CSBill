@@ -6,6 +6,7 @@ php:
   - 5.4
 
 before_script:
+    - mysql -e 'create database csbill_test;'
     - curl -s http://getcomposer.org/installer | php
     - COMPOSER_ROOT_VERSION=dev-master php composer.phar --dev install
 
