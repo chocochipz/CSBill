@@ -1,0 +1,17 @@
+{%  extends "CSCoreBundle::layout.html.twig" %}
+
+{%  block header %}
+	{%  include "CSCoreBundle:Menu:top.html.twig" %}
+{%  endblock %}
+
+{%  block container %}
+	<div class="row-fluid">
+		<aside class="span3 well">
+			{{  block('sidebar') }}
+		</aside>
+	
+		<div class="span9">
+			{{  block('content') }}
+		</div>
+	</div>
+{%  endblock %}
