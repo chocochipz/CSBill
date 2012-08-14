@@ -98,9 +98,6 @@ stof_doctrine_extensions:
     orm:
         default: ~
 
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
 jms_di_extra:
     locations:
         all_bundles: true
