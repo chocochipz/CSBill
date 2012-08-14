@@ -2,6 +2,10 @@
     "hash": "2c0ad4beaacc810752764681fc5067a8",
     "packages": [
         {
+            "package": "customscripts/cs-core-bundle",
+            "version": "dev-master"
+        },
+        {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
             "source-reference": "2ec4bc6db13db6a0976a16b71058083c55cbcdbd",
@@ -154,6 +158,15 @@
             "version": "dev-master",
             "source-reference": "51c866f415bbee670cd9ba13591307bce8dabdca",
             "commit-date": "1343464333"
+        },
+        {
+            "package": "stof/doctrine-extensions-bundle",
+            "version": "1.0.2",
+            "source-reference": "6b2a8c74bd93ffdd6482f46b2b062c93f938202d"
+        },
+        {
+            "package": "friendsofsymfony/jsrouting-bundle",
+            "version": "dev-master"
         }
     ],
     "packages-dev": [
