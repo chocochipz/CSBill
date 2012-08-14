@@ -1,9 +1,11 @@
 {
-    "hash": "2c0ad4beaacc810752764681fc5067a8",
+    "hash": "70d2d3b9b7429dd82901b79dd78aeff8",
     "packages": [
         {
             "package": "customscripts/cs-core-bundle",
-            "version": "dev-master"
+            "version": "dev-master",
+            "source-reference": "49413c9d930f1d0f2d249646418647f5f67a176a",
+            "commit-date": "1344843109"
         },
         {
             "package": "doctrine/common",
@@ -108,6 +110,12 @@
         {
             "package": "swiftmailer/swiftmailer",
             "version": "dev-master",
+            "alias-pretty-version": "4.2.x-dev",
+            "alias-version": "4.2.9999999.9999999-dev"
+        },
+        {
+            "package": "swiftmailer/swiftmailer",
+            "version": "dev-master",
             "source-reference": "19045c3692f6f6ddb4abc5ebfaf3f86f1c57d265",
             "commit-date": "1343980916"
         },
@@ -160,23 +168,31 @@
             "commit-date": "1343464333"
         },
         {
-            "package": "stof/doctrine-extensions-bundle",
-            "version": "1.0.2",
-            "source-reference": "6b2a8c74bd93ffdd6482f46b2b062c93f938202d"
+            "package": "friendsofsymfony/jsrouting-bundle",
+            "version": "dev-master",
+            "alias-pretty-version": "1.0.x-dev",
+            "alias-version": "1.0.9999999.9999999-dev"
         },
         {
-            "package": "friendsofsymfony/jsrouting-bundle",
-            "version": "dev-master"
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "alias-pretty-version": "2.3.x-dev",
+            "alias-version": "2.3.9999999.9999999-dev"
+        },
+        {
+            "package": "stof/doctrine-extensions-bundle",
+            "version": "dev-master",
+            "source-reference": "f31a0861de08b6594f09430a4cbaf0618e5e11ad",
+            "commit-date": "1343029923"
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "customscripts/cs-core-bundle": 20,
         "doctrine/doctrine-bundle": 20,
         "twig/extensions": 20,
         "symfony/assetic-bundle": 20,
@@ -184,6 +200,8 @@
         "symfony/monolog-bundle": 20,
         "sensio/distribution-bundle": 20,
         "sensio/framework-extra-bundle": 20,
-        "sensio/generator-bundle": 20
+        "sensio/generator-bundle": 20,
+        "stof/doctrine-extensions-bundle": 20,
+        "friendsofsymfony/jsrouting-bundle": 20
     }
 }
