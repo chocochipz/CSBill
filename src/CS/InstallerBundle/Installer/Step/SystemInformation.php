@@ -1,4 +1,12 @@
 <?php
+/*
+ * This file is part of the CSBill package.
+ *
+ * (c) Pierre du Plessis <info@customscripts.co.za>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace CS\InstallerBundle\Installer\Step;
 
@@ -22,10 +30,10 @@ class SystemInformation extends Step
      * @var string $title
      */
     public $title = 'System Information';
-    
+
     /**
      * Array containing all the parameters for the system and user information
-     * 
+     *
      * @var array $params
      */
     public $params = array(	'email_address' => '',
@@ -48,7 +56,7 @@ class SystemInformation extends Step
 		{
 			$this->addError('Please enter a password');
 		}
-		
+
 		$this->params = $request;
 
         return count($this->getErrors()) === 0;
@@ -56,27 +64,27 @@ class SystemInformation extends Step
 
     /**
      * Save system and user configuration values
-     * 
+     *
      * @param array $request
      */
     public function process($request = array())
     {
 		$user = new User;
-		
+
 		$encoder = $this->get('security.encoder_factory')->getEncoder($user);
-		
+
 		$password = $encoder->encodePassword($request['password'], $user->getSalt());
-		
+
 		$user->setUsername('admin')
 			 ->setEmail($request['email_address'])
 			 ->setPassword($password);
-		
+
 		$em = $this->get('doctrine.orm.entity_manager');
-		
+
 		$role = $em->getRepository('CSUserBundle:Role')->findOneByName('super_admin');
-		
+
 		$user->addRole($role);
-		
+
 		$em->persist($user);
 		$em->flush();
 	}
