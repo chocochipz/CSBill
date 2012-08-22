@@ -118,12 +118,12 @@ abstract class Step implements StepInterface, \ArrayAccess
     }
 
     /**
-     * TODO: this will retrieve the data stored in the session for the current step
+     * Clears the the current step
      *
-     * @return array
+     * @return void
      */
-    public function getData()
+    public function clear()
     {
-
-    }    
+        $this->errors = array();
+    }
 }

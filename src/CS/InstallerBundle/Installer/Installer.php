@@ -64,6 +64,8 @@ class Installer
      */
     public function validateStep($options)
     {
+        $this->step->clear();
+
         // if step is valid, continue to next step
         if ($this->step->validate($options)) {
             // Process the current step (save configuration data, run database queries etc)
