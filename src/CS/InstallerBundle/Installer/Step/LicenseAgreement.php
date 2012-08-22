@@ -62,7 +62,10 @@ class LicenseAgreement extends Step
 
         $finder = new Finder();
         $finder->files()->in($root_dir)->depth('== 0')->filter(function(\SplFileInfo $file){
-                if ($file->getExtension() !== '') {
+
+                $extension = pathinfo($file->getFilename(), PATHINFO_EXTENSION);
+
+                if ($extension !== '') {
                     return false;
                 }
             });
