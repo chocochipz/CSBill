@@ -21,13 +21,20 @@ class SystemCheck extends Step
      * @var string $title
      */
     public $title = 'System Check';
-    
+
     /**
      * Contains an array of all the required and optional checks to see if it passed
-     * 
+     *
      * @var array $check
      */
     public $check;
+
+    /**
+     * The root directory of the application
+     *
+     * @var string
+     */
+    private $root_dir;
 
     /**
      * Validates that the system meets the minimum requirements
@@ -38,9 +45,9 @@ class SystemCheck extends Step
     public function validate($request = array())
     {
 		$this->start();
-		
+
 		$error = false;
-		
+
 		foreach($this->check['recommended']['values'] as $value)
 		{
 			if(substr(trim($value), 0, 2) !== 'OK')
@@ -67,26 +74,28 @@ class SystemCheck extends Step
      */
     public function start()
     {
-		$process = new Process('php ../app/check.php');
+        $this->root_dir = $this->get('kernel')->getRootDir();
+
+		$process = new Process(sprintf('php %s/check.php', $this->root_dir));
 		$process->setTimeout(3600);
 		$process->run();
 		if (!$process->isSuccessful()) {
-			throw new RuntimeException($process->getErrorOutput());
+			throw new \RuntimeException($process->getErrorOutput());
 		}
 
 		$check = $process->getOutput();
-		
+
 		$output = explode("\n", $check);
-		
+
 		$recommended = $this->getOutput($output, 'mandatory requirements');
 		$optional = $this->getOutput($output, 'optional recommendations');
-		
+
 		$this->check = array('recommended' => $recommended, 'optional' => $optional);
     }
-    
+
     /**
      * Parses through the output of the system check, and extracts the requirements
-     * 
+     *
      * @param array $output The ouput generated from the system check
      * @param string $header the header to look for to get the requirements
      * @return array
@@ -99,13 +108,13 @@ class SystemCheck extends Step
 			{
 				$content = array();
 				$heading = trim(str_replace('**', '', $line));
-				
+
 				do {
 					$line = next($output);
 				} while (substr($line, 0, 1) === '*');
-				
+
 				$line = next($output);
-				
+
 				$line = next($output);
 
 				do {
@@ -114,7 +123,7 @@ class SystemCheck extends Step
 				} while(substr(strtolower($line), 0, 2) !== '**' && $line);
 			}
 		}
-		
+
 		return array('heading' => $heading, 'values' => $content);
 	}
 }

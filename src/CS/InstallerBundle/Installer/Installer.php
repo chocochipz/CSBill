@@ -62,32 +62,30 @@ class Installer
      *
      * @return mixed RedirectResponse|boolean
      */
-    public function validateStep()
+    public function validateStep($options)
     {
-        $request = $this->getContainer()->get('request')->request->all();
-
         // if step is valid, continue to next step
-        if ($this->step->validate($request)) {
+        if ($this->step->validate($options)) {
             // Process the current step (save configuration data, run database queries etc)
-            $this->step->process($request);
+            $this->step->process($options);
 
             $step = $this->getSession('step');
 
             $key = array_search($step, $this->steps);
-            
+
             $key++;
-            
+
             if(!isset($this->steps[$key]))
             {
 				$route = $this->getContainer()->get('router')->generate('_installer_success');
 
 				return new RedirectResponse($route);
 			}
-            
+
             $this->step($this->steps[$key]);
 
             // save all the request data in the session so we can use it later
-            $this->setSession($step, $request);
+            $this->setSession($step, $options);
 
             $route = $this->getContainer()->get('router')->generate('_installer');
 
@@ -155,20 +153,20 @@ class Installer
 
         return $this;
     }
-    
+
     /**
      * Returns an array of all available steps, formatted to human-readible name
-     * 
+     *
      * @return array
      */
     public function getSteps()
     {
 		return $this->steps;
 	}
-	
+
 	/**
 	 * Return the current active step
-	 * 
+	 *
 	 * @return string
 	 */
 	public function active()

@@ -28,8 +28,10 @@ class InstallController extends Controller
      */
     public function indexAction()
     {
-        if ($this->getRequest()->getMethod() === 'POST') {
-            $response = $this->get('installer')->validateStep();
+        $request = $this->getRequest();
+
+        if ($request->getMethod() === 'POST') {
+            $response = $this->get('installer')->validateStep($request->request->all());
 
             if ($response instanceof RedirectResponse) {
                 return $response;
@@ -41,7 +43,7 @@ class InstallController extends Controller
 
         return array('step' => $step, 'installer' => $installer);
     }
-    
+
     /**
      * @Route("/success", name="_installer_success")
      * @Template()

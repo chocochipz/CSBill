@@ -24,17 +24,24 @@ class DatabaseConfig extends Step
      * @var string $title
      */
     public $title = 'Database Configuration';
-    
+
     /**
      * Array containing all the PDO drivers that is installed
-     * 
+     *
      * @var array $drivers
      */
     public $drivers;
 
     /**
+     * The root directory of the application
+     *
+     * @var string
+     */
+    private $root_dir;
+
+    /**
      * Array containing all the parameters for the database config
-     * 
+     *
      * @var array $params
      */
     public $params = array(	'database_driver' 	=> '',
@@ -43,7 +50,7 @@ class DatabaseConfig extends Step
 							'database_password' => '',
 							'database_port' 	=> 3306,
 							'database_name' 	=> '');
-    
+
     /**
      * Validates that the databse exists, and we are able to connect to it
      *
@@ -76,7 +83,7 @@ class DatabaseConfig extends Step
 		{
 			$this->addError('Please enter the name of the database. Note: The database should already exist');
 		}
-		
+
 		if(count($this->getErrors()) === 0)
 		{
 			$connectionFactory = $this->container->get('doctrine.dbal.connection_factory');
@@ -87,7 +94,7 @@ class DatabaseConfig extends Step
 				'host' => $request['database_host'],
 				'dbname' => $request['database_name'],
 			));
-			
+
 			try {
 				$connection->connect();
 			} catch(\PDOException $e)
@@ -95,7 +102,7 @@ class DatabaseConfig extends Step
 				$this->addError($e->getMessage());
 			}
 		}
-		
+
 		$this->params = $request;
 
         return count($this->getErrors()) === 0;
@@ -103,13 +110,15 @@ class DatabaseConfig extends Step
 
     /**
      * Writes the database configuration to the parameters.yml file, and runs all the database migrations and fixtures
-     * 
+     *
      * @param array $request
      */
-    public function process($request = array()){
-		
+    public function process($request = array())
+    {
+        $this->root_dir = $this->get('kernel')->getRootDir();
+
 		$this->writeConfigFile($request);
-		
+
 		$this->executeMigrations();
 		$this->executeFixtures();
 	}
@@ -123,33 +132,33 @@ class DatabaseConfig extends Step
     {
 		$this->drivers = \PDO::getAvailableDrivers();
     }
-    
+
     /**
      * Writes all the configuration values to the paramaters file
-     * 
+     *
      * @param array $params
      * @throws ParseException
      * @return void;
      */
     public function writeConfigFile($params = array())
     {
-		$config = $this->get('kernel')->getRootDir().'/config/parameters.yml'; 
+		$config = $this->get('kernel')->getRootDir().'/config/parameters.yml';
 
 		$yaml = new Parser();
-		
+
 		try {
 			$value = $yaml->parse(file_get_contents($config));
 		} catch (ParseException $e) {
 			throw new \RuntimeException("Unable to parse the YAML string: %s. Your installation might be corrupt.", $e->getMessage());
 			exit;
 		}
-		
+
 		foreach($params as $key => $param)
 		{
 			// sets the database details
 			$value['parameters'][$key] = $param;
 		}
-		
+
 		// sets a unique value for the secret token
 		// We do this when writing the database configuration, as this is the only time (for now) that we modify the parameters.yml file
 		// We still need to add an extra step so we can write smtp settings
@@ -161,30 +170,30 @@ class DatabaseConfig extends Step
 
 		file_put_contents($config, $yaml);
 	}
-	
+
 	/**
 	 * Executes all doctrine migrations to create database structure
-	 * 
+	 *
 	 * @return void
 	 */
 	public function executeMigrations()
 	{
-		$this->_runProcess('php ../app/console doctrine:migrations:migrate --no-interaction');
+		$this->_runProcess(sprintf('php %s/console doctrine:migrations:migrate --no-interaction', $this->root_dir));
 	}
-	
+
 	/**
 	 * Load all fictures
-	 * 
+	 *
 	 * @return void
 	 */
 	public function executeFixtures()
 	{
-		$this->_runProcess('php ../app/console doctrine:fixtures:load');
+		$this->_runProcess(sprintf('php %s/console doctrine:fixtures:load', $this->root_dir));
 	}
-	
+
 	/**
 	 * Runs a specific command with the Process Component
-	 * 
+	 *
 	 * @param string $command The command that needs to be run
 	 * @return string The output of the processed command
 	 */
@@ -193,10 +202,10 @@ class DatabaseConfig extends Step
 		$process = new Process($command);
 		$process->setTimeout(3600);
 		$process->run();
-		if (!$process->isSuccessful()) {			
+		if (!$process->isSuccessful()) {
 			throw new \RuntimeException($process->getErrorOutput());
 		}
-		
+
 		return $process->getOutput();
 	}
 }

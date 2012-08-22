@@ -37,7 +37,7 @@ class LicenseAgreement extends Step
      */
     public function validate($request = array())
     {
-        if (isset($request['accept']) && $request['accept'] === 'on') {
+        if (isset($request['accept']) && $request['accept'] === 'y') {
             return true;
         }
 
