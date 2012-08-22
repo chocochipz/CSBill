@@ -1,0 +1,7 @@
+services:
+    installer.check:
+        class: CS\InstallerBundle\Listener\RequestListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 0 }
+        calls:
+            - [ setContainer, [ @service_container ] ]

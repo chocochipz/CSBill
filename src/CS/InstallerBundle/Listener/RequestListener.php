@@ -13,6 +13,7 @@ namespace CS\InstallerBundle\Listener;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\HttpKernel;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 use JMS\DiExtraBundle\Annotation as DI;
 
@@ -100,5 +101,17 @@ class RequestListener
 
 			return $response ? $event->setResponse($response) : null;
 		}
+    }
+
+    /**
+     * Sets an instance of the service container
+     *
+     * @param ContainerAwareInterface $container
+     * @return void
+     */
+
+    public function setContainer(ContainerInterface $container)
+    {
+        $this->container = $container;
     }
 }
