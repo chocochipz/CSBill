@@ -56,8 +56,14 @@
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "531e2b84737223bc5aa09bc078a6f5beb74f69f9",
-            "commit-date": "1345461376"
+            "alias-pretty-version": "2.3.x-dev",
+            "alias-version": "2.3.9999999.9999999-dev"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "source-reference": "fa057868e3490c64afb7144348c7cf1da10229de",
+            "commit-date": "1345650337"
         },
         {
             "package": "jms/aop-bundle",
@@ -158,8 +164,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "7a233bc7a6f1a34150a358d223b12c76c1ed1674",
-            "commit-date": "1345572885"
+            "source-reference": "2cf3cb5b7a56446c76f90689e4df047031d73205",
+            "commit-date": "1345655061"
         },
         {
             "package": "twig/extensions",
