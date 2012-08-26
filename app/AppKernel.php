@@ -19,15 +19,16 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-            
+
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
             new CS\CoreBundle\CSCoreBundle(),
             new CS\InstallerBundle\CSInstallerBundle(),
             new CS\UserBundle\CSUserBundle(),
-            new CS\ClientBundle\CSClientBundle(),
+            new CS\ClientBundle\CSClientBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
