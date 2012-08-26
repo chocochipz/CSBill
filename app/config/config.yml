@@ -110,3 +110,8 @@ knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: CSCoreBundle:Menu:menu.html.twig
         
+services:
+    twig.extension.debug:
+        class: Twig_Extensions_Extension_Debug
+        tags:
+            - { name: twig.extension }
