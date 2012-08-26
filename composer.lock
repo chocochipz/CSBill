@@ -1,5 +1,5 @@
 {
-    "hash": "e8141d182a969c7f9c3a96433e80a02a",
+    "hash": "f0e8abe783d2aae96e817d962dd2842b",
     "packages": [
         {
             "package": "doctrine/common",
@@ -62,8 +62,8 @@
         {
             "package": "gedmo/doctrine-extensions",
             "version": "dev-master",
-            "source-reference": "fa057868e3490c64afb7144348c7cf1da10229de",
-            "commit-date": "1345650337"
+            "source-reference": "ceb6e562931ac4a86ec103773ecc0919acd74678",
+            "commit-date": "1345826395"
         },
         {
             "package": "jms/aop-bundle",
@@ -86,6 +86,24 @@
             "version": "1.1.0"
         },
         {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "alias-pretty-version": "2.0.x-dev",
+            "alias-version": "2.0.9999999.9999999-dev"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "source-reference": "78f78d593117ac50ba3ab13664a7c99904f694d1",
+            "commit-date": "1345991530"
+        },
+        {
+            "package": "knplabs/knp-menu-bundle",
+            "version": "dev-master",
+            "source-reference": "4389efdd5c30d974544afbfe5ada3a4ce30d7aa1",
+            "commit-date": "1344013797"
+        },
+        {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
             "alias-pretty-version": "1.1.x-dev",
@@ -94,8 +112,8 @@
         {
             "package": "kriswallsmith/assetic",
             "version": "dev-master",
-            "source-reference": "d1d5066d9071a76d771993081ee23137e96216b7",
-            "commit-date": "1344507381"
+            "source-reference": "adea88fac2347added93c6be712687f85fd5efab",
+            "commit-date": "1345984165"
         },
         {
             "package": "monolog/monolog",
@@ -104,8 +122,14 @@
         {
             "package": "sensio/distribution-bundle",
             "version": "dev-master",
-            "source-reference": "bd98b5fb0e4a5dddb4f7acd2e11f28c4cd7eacee",
-            "commit-date": "1345139690"
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "sensio/distribution-bundle",
+            "version": "dev-master",
+            "source-reference": "f7e9231c36c3badc43f40d025a0ad12939b91df7",
+            "commit-date": "1345982505"
         },
         {
             "package": "sensio/framework-extra-bundle",
@@ -152,7 +176,13 @@
         {
             "package": "symfony/swiftmailer-bundle",
             "version": "dev-master",
-            "source-reference": "v2.1.0-RC1",
+            "alias-pretty-version": "2.1.x-dev",
+            "alias-version": "2.1.9999999.9999999-dev"
+        },
+        {
+            "package": "symfony/swiftmailer-bundle",
+            "version": "dev-master",
+            "source-reference": "v2.1.0-BETA4",
             "commit-date": "1342684512"
         },
         {
@@ -164,8 +194,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "2cf3cb5b7a56446c76f90689e4df047031d73205",
-            "commit-date": "1345655061"
+            "source-reference": "2c0e851059905307e5a28ebe0b5153e8676585d1",
+            "commit-date": "1345978996"
         },
         {
             "package": "twig/extensions",
@@ -182,8 +212,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "552143062982fd15a1d6fe5a0cdda1f007212154",
-            "commit-date": "1345489844"
+            "source-reference": "32c4867f68c1bacc758602d602e18a3ac1598c76",
+            "commit-date": "1345916214"
         }
     ],
     "packages-dev": null,
@@ -202,6 +232,7 @@
         "sensio/generator-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
-        "doctrine/doctrine-fixtures-bundle": 20
+        "doctrine/doctrine-fixtures-bundle": 20,
+        "knplabs/knp-menu-bundle": 20
     }
 }
