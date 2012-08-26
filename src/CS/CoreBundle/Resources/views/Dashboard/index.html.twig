@@ -1,8 +1,12 @@
-{% extends "CSCoreBundle:Layout:sidebar.html.twig" %}
- 
+{% extends "CSCoreBundle::layout.html.twig" %}
+
 {% block title %}Dashboard{% endblock %}
- 
-{% block content %}
+
+{% block header %}
+    {% include "CSCoreBundle:Menu:top.html.twig" %}
+{% endblock %}
+
+{% block container %}
 
 	<h1>Dashboard</h1>
 {% endblock %}
