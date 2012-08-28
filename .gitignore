@@ -15,7 +15,6 @@
 *.dmg
 *.gz
 *.iso
-#*.jar
 *.rar
 *.tar
 *.zip
@@ -40,7 +39,7 @@ Thumbs.db
 # Bootstrap
 app/bootstrap*
 
-# Bootstrap
+# Composer
 composer.phar
 
 # Symfony directories
