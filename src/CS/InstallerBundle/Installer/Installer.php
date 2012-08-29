@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
- * @DI\Service(id="installer")
+ * @DI\Service("installer")
  */
 class Installer
 {
