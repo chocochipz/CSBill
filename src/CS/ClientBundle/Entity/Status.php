@@ -11,15 +11,15 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * CS\ClientBundle\Entity\Client
+ * CS\ClientBundle\Entity\Status
  *
- * @ORM\Table(name="clients")
- * @ORM\Entity(repositoryClass="CS\ClientBundle\Repository\ClientRepository")
+ * @ORM\Table(name="client_status")
+ * @ORM\Entity()
  * @UniqueEntity("name")
  * @Gedmo\Loggable()
  * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
-class Client
+class Status
 {
     /**
      * @var integer $id
@@ -38,23 +38,6 @@ class Client
      * @Assert\MaxLength(125)
      */
     private $name;
-
-    /**
-     * @var string $website
-     *
-     * @ORM\Column(name="website", type="string", length=125, nullable=true)
-     * @Assert\Url()
-     * @Assert\MaxLength(125)
-     */
-    private $website;
-
-    /**
-     * @var Status $status
-     *
-     * @ORM\ManyToOne(targetEntity="Status", inversedBy="clients", cascade="ALL")
-     * @Assert\Valid()
-     */
-    private $status;
 
     /**
      * @var string $created
@@ -85,18 +68,17 @@ class Client
     /**
      * @var ArrayCollection $contacts
      *
-     * @ORM\OneToMany(targetEntity="Contact", mappedBy="client", cascade="ALL")
-     * @Orm\OrderBy({"firstname" = "ASC"})
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="status", cascade="ALL")
      * @Assert\Valid()
      */
-    private $contacts;
+    private $clients;
 
     /**
      * Constructer
      */
     public function __construct()
     {
-        $this->contacts = new ArrayCollection;
+        $this->clients = new ArrayCollection;
     }
 
     /**
@@ -113,7 +95,7 @@ class Client
      * Set name
      *
      * @param  string $name
-     * @return Client
+     * @return Status
      */
     public function setName($name)
     {
@@ -133,56 +115,10 @@ class Client
     }
 
     /**
-     * Set status
-     *
-     * @param  string $status
-     * @return Client
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return Status
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Set website
-     *
-     * @param  string $website
-     * @return Client
-     */
-    public function setWebsite($website)
-    {
-        $this->website = $website;
-
-        return $this;
-    }
-
-    /**
-     * Get website
-     *
-     * @return string
-     */
-    public function getWebsite()
-    {
-        return $this->website;
-    }
-
-    /**
      * Set created
      *
      * @param  \DateTime $created
-     * @return Client
+     * @return Status
      */
     public function setCreated(\DateTime $created)
     {
@@ -205,7 +141,7 @@ class Client
      * Set updated
      *
      * @param  \DateTime $updated
-     * @return Client
+     * @return Status
      */
     public function setUpdated(\DateTime $updated)
     {
@@ -228,7 +164,7 @@ class Client
      * Set deleted
      *
      * @param  \DateTime $deleted
-     * @return Client
+     * @return Status
      */
     public function setDeleted(\DateTime $deleted)
     {
@@ -248,26 +184,36 @@ class Client
     }
 
     /**
-     * Add contact
+     * Add client
      *
-     * @param  Contact $contact
-     * @return Client
+     * @param  Client $client
+     * @return Status
      */
-    public function addContact(Contact $contact)
+    public function addClient(Client $client)
     {
-        $this->contacts[] = $contact;
-        $contact->setClient($this);
+        $this->clients[] = $client;
+        $contact->setStatus($this);
 
         return $this;
     }
 
     /**
-     * Get contacts
+     * Get clients
      *
      * @return ArrayCollection
      */
-    public function getContacts()
+    public function getClients()
     {
-        return $this->contacts;
+        return $this->clients;
+    }
+
+    /**
+     * Return the status as a string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return ucwords($this->getName());
     }
 }
