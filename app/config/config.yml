@@ -104,8 +104,8 @@ jms_di_extra:
     locations:
         all_bundles: true
         #bundles: []
-        directories: ["%kernel.root_dir%/../src"]
-     
+        directories: ["%kernel.root_dir%/../src", "%kernel.root_dir%/../vendor/customscripts"]
+
 knp_menu:
     twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
         template: CSCoreBundle:Menu:menu.html.twig

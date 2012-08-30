@@ -167,7 +167,7 @@ class Client
      */
     public function getCreated()
     {
-        return new DateTime($this->created);
+        return $this->created;
     }
 
     /**
@@ -190,7 +190,7 @@ class Client
      */
     public function getUpdated()
     {
-        return new DateTime($this->updated);
+        return $this->updated;
     }
 
     /**
@@ -213,7 +213,7 @@ class Client
      */
     public function getDeleted()
     {
-        return new DateTime($this->created);
+        return $this->created;
     }
 
     /**

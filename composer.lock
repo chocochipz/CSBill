@@ -1,5 +1,5 @@
 {
-    "hash": "67dbf1c62ec96e5975cc19c4662d038e",
+    "hash": "9e6da6d32d95acef97271be179a24c47",
     "packages": [
         {
             "package": "customscripts/datagrid-bundle",
@@ -60,6 +60,12 @@
             "version": "2.3.x-dev",
             "source-reference": "bbf527a27356414bfa9bf520f018c5cb7af67c77",
             "commit-date": "1346250986"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "alias-pretty-version": "2.3.x-dev",
+            "alias-version": "2.3.9999999.9999999-dev"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -274,8 +280,8 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "300b26cf8eee5645bb3b07e83fd81760ab452768",
-            "commit-date": "1346219047"
+            "source-reference": "f76ed618c890165fd107a9cd4a06c7d73da75b9c",
+            "commit-date": "1346324412"
         }
     ],
     "packages-dev": null,

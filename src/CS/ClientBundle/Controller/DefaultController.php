@@ -11,9 +11,11 @@
 
 namespace CS\ClientBundle\Controller;
 
-use CS\CoreBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
+use CS\CoreBundle\Controller\Controller;
+use CS\ClientBundle\DataGrid\Grid;
 
 /**
  * @Route("/clients")
@@ -26,6 +28,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array();
+        $grid = $this->get('grid')->create(new Grid);
+
+        return array('grid' => $grid);
     }
 }
