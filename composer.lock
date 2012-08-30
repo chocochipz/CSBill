@@ -1,11 +1,17 @@
 {
-    "hash": "c014cc6d4fae89b8d0f602fee215b3c3",
+    "hash": "67dbf1c62ec96e5975cc19c4662d038e",
     "packages": [
+        {
+            "package": "customscripts/datagrid-bundle",
+            "version": "dev-master",
+            "source-reference": "49a76d1f924896054eecefae0f2c02be4ef8a34a",
+            "commit-date": "1346323104"
+        },
         {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
-            "source-reference": "50103d1fde90876a48478f4daa760d9e81448d18",
-            "commit-date": "1346226460"
+            "source-reference": "605b1b8b5a7bc8daf9111fb35483e5708e30de35",
+            "commit-date": "1346249247"
         },
         {
             "package": "doctrine/data-fixtures",
@@ -16,8 +22,8 @@
         {
             "package": "doctrine/dbal",
             "version": "2.3.x-dev",
-            "source-reference": "cc7b52ecbd9012030d4928f454a009524d0d0928",
-            "commit-date": "1346229157"
+            "source-reference": "adb28e4e1f959d515971b8e8b7f05a01913a7b91",
+            "commit-date": "1346249329"
         },
         {
             "package": "doctrine/doctrine-bundle",
@@ -52,8 +58,8 @@
         {
             "package": "doctrine/orm",
             "version": "2.3.x-dev",
-            "source-reference": "bdb36a71c5be6000effb6f33d1e296f3df27aba3",
-            "commit-date": "1346246135"
+            "source-reference": "bbf527a27356414bfa9bf520f018c5cb7af67c77",
+            "commit-date": "1346250986"
         },
         {
             "package": "gedmo/doctrine-extensions",
@@ -148,8 +154,8 @@
         {
             "package": "sensio/distribution-bundle",
             "version": "dev-master",
-            "source-reference": "1d2bab55a00bf22f7fdbf13116f9f39ccfdec157",
-            "commit-date": "1346234490"
+            "source-reference": "a86d2c0d7212851cc4e971abdff13b89eb063861",
+            "commit-date": "1346246961"
         },
         {
             "package": "sensio/framework-extra-bundle",
@@ -178,8 +184,14 @@
         {
             "package": "stof/doctrine-extensions-bundle",
             "version": "dev-master",
-            "source-reference": "63c2aa344bd45ca8cf16d778bb8d382bf18b09e3",
-            "commit-date": "1345420848"
+            "alias-pretty-version": "1.1.x-dev",
+            "alias-version": "1.1.9999999.9999999-dev"
+        },
+        {
+            "package": "stof/doctrine-extensions-bundle",
+            "version": "dev-master",
+            "source-reference": "0247e6f1658d76292c8ffe2c5106090bd36bd799",
+            "commit-date": "1346283670"
         },
         {
             "package": "swiftmailer/swiftmailer",
@@ -238,8 +250,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "deb41a10de5b8a3bda4a0d69ec2e86ee6ccfd434",
-            "commit-date": "1346240674"
+            "source-reference": "2982e6e678c86b48e9f2c3774302f1a804c2a297",
+            "commit-date": "1346320856"
         },
         {
             "package": "twig/extensions",
@@ -275,6 +287,7 @@
         "stof/doctrine-extensions-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
-        "knplabs/knp-menu-bundle": 20
+        "knplabs/knp-menu-bundle": 20,
+        "customscripts/datagrid-bundle": 20
     }
 }
