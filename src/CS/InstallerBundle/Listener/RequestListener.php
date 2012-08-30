@@ -84,7 +84,7 @@ class RequestListener
 				{
 					throw new \RuntimeException('The users table does not exist');
 				}
-			} catch(\PDOException $e)
+			} catch(\Exception $e)
 			{
 				$response = new RedirectResponse($this->container->get('router')->generate('_installer'));
 
