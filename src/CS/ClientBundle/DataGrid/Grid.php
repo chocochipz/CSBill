@@ -28,15 +28,19 @@ class Grid extends BaseGrid {
     }
 
     /**
-     * The name of the current grid
-     *
-     * @return string
+     * @return string The name of the current grid
      */
     public function getName()
     {
         return 'clients';
     }
 
+    /**
+     * Manupulate the columns for the clients grid
+     *
+     * @param ColumnCollection $collection
+     * @return void
+     */
     public function getColumns(ColumnCollection $collection)
     {
         $collection->remove(array('deleted', 'updated'));
