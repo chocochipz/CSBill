@@ -13,6 +13,8 @@ namespace CS\ClientBundle\DataGrid;
 
 use CS\DataGridBundle\Grid\BaseGrid;
 use CS\DataGridBundle\Grid\Column\ColumnCollection;
+use CS\DataGridBundle\Grid\Action\ActionCollection;
+use CS\DataGridBundle\Grid\Action\Action;
 
 class Grid extends BaseGrid {
 
@@ -46,5 +48,32 @@ class Grid extends BaseGrid {
         $collection->remove(array('deleted', 'updated'));
 
         $collection['id']->setLabel('#');
+    }
+
+    /**
+     * Adds the default CRUD actions for clients
+     *
+     * @param ActionCollection $actions
+     * @return void
+     */
+    public function getActions(ActionCollection $actions)
+    {
+        $add = new Action('Add Client');
+
+        $add->setAction('_client_add');
+        $add->attributes(array('class' => 'btn btn-primary'));
+
+        $edit = new Action('Edit Client');
+
+        $edit->setAction('_client_edit')
+            ->requireRow()
+            ->confirm('Are you sure you want to edit the selected Client(s)?')
+            ->onClick('do something cool')
+            ->attributes(array('class' => 'btn btn-info'))
+            ->icon('filter icon-white')
+            ->showWhenEmpty(false);
+
+        $actions->add($add);
+        $actions->add($edit);
     }
 }

@@ -32,4 +32,22 @@ class DefaultController extends Controller
 
         return array('grid' => $grid);
     }
+
+    /**
+     * @Route("/add", name="_client_add")
+     * @Template()
+     */
+    public function addAction()
+    {
+        return array();
+    }
+
+    /**
+     * @Route("/edit", name="_client_edit")
+     * @Template()
+     */
+    public function editAction()
+    {
+        return array();
+    }
 }
