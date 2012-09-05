@@ -1,23 +1,11 @@
 {
-    "hash": "9e6da6d32d95acef97271be179a24c47",
+    "hash": "c2639bd4ac21bfd8d3fd08e114f2f759",
     "packages": [
-        {
-            "package": "customscripts/datagrid-bundle",
-            "version": "dev-master",
-            "source-reference": "49a76d1f924896054eecefae0f2c02be4ef8a34a",
-            "commit-date": "1346323104"
-        },
         {
             "package": "doctrine/common",
             "version": "2.3.x-dev",
             "source-reference": "605b1b8b5a7bc8daf9111fb35483e5708e30de35",
             "commit-date": "1346249247"
-        },
-        {
-            "package": "doctrine/data-fixtures",
-            "version": "dev-master",
-            "source-reference": "779c3dfe446b6da893be87b908d6be28345d1e01",
-            "commit-date": "1341780535"
         },
         {
             "package": "doctrine/dbal",
@@ -34,44 +22,14 @@
         {
             "package": "doctrine/doctrine-bundle",
             "version": "dev-master",
-            "source-reference": "4d9bb0f3af470556983eb41a7d19ede23401ef0b",
-            "commit-date": "1344549563"
-        },
-        {
-            "package": "doctrine/doctrine-fixtures-bundle",
-            "version": "dev-master",
-            "source-reference": "186d605aa6b592bd577e07e0e9a2c420b02b2492",
-            "commit-date": "1345465418"
-        },
-        {
-            "package": "doctrine/doctrine-migrations-bundle",
-            "version": "dev-master",
-            "source-reference": "3792aa78445773387754c6853bbd7f4dcb31f486",
-            "commit-date": "1341472972"
-        },
-        {
-            "package": "doctrine/migrations",
-            "version": "dev-master",
-            "source-reference": "b86b4cc0a39714f0aa53b908d495beacfa0e4011",
-            "commit-date": "1343202693"
+            "source-reference": "3600872919186e1a40e8fd556e65f6dca6337cc9",
+            "commit-date": "1346617185"
         },
         {
             "package": "doctrine/orm",
             "version": "2.3.x-dev",
             "source-reference": "bbf527a27356414bfa9bf520f018c5cb7af67c77",
             "commit-date": "1346250986"
-        },
-        {
-            "package": "gedmo/doctrine-extensions",
-            "version": "dev-master",
-            "alias-pretty-version": "2.3.x-dev",
-            "alias-version": "2.3.9999999.9999999-dev"
-        },
-        {
-            "package": "gedmo/doctrine-extensions",
-            "version": "dev-master",
-            "source-reference": "8fa580a58e73550b3f729e420d078784b154013f",
-            "commit-date": "1346185701"
         },
         {
             "package": "jms/aop-bundle",
@@ -83,13 +41,7 @@
         },
         {
             "package": "jms/di-extra-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "1.1.x-dev",
-            "alias-version": "1.1.9999999.9999999-dev"
-        },
-        {
-            "package": "jms/di-extra-bundle",
-            "version": "dev-master",
+            "version": "1.1.x-dev",
             "source-reference": "1.1.0-RC",
             "commit-date": "1345140102"
         },
@@ -99,33 +51,9 @@
         },
         {
             "package": "jms/security-extra-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "1.2.x-dev",
-            "alias-version": "1.2.9999999.9999999-dev"
-        },
-        {
-            "package": "jms/security-extra-bundle",
-            "version": "dev-master",
-            "source-reference": "1.2.0-RC",
-            "commit-date": "1345840275"
-        },
-        {
-            "package": "knplabs/knp-menu",
-            "version": "dev-master",
-            "alias-pretty-version": "2.0.x-dev",
-            "alias-version": "2.0.9999999.9999999-dev"
-        },
-        {
-            "package": "knplabs/knp-menu",
-            "version": "dev-master",
-            "source-reference": "78f78d593117ac50ba3ab13664a7c99904f694d1",
-            "commit-date": "1345991530"
-        },
-        {
-            "package": "knplabs/knp-menu-bundle",
-            "version": "dev-master",
-            "source-reference": "dcbbf95363d2e36d507b481ac2124a0ae0ce6e67",
-            "commit-date": "1346242383"
+            "version": "1.2.x-dev",
+            "source-reference": "81070f525ec24f9e6cf6509532b260bc54c42ea5",
+            "commit-date": "1346345841"
         },
         {
             "package": "kriswallsmith/assetic",
@@ -188,18 +116,6 @@
             "commit-date": "1346138171"
         },
         {
-            "package": "stof/doctrine-extensions-bundle",
-            "version": "dev-master",
-            "alias-pretty-version": "1.1.x-dev",
-            "alias-version": "1.1.9999999.9999999-dev"
-        },
-        {
-            "package": "stof/doctrine-extensions-bundle",
-            "version": "dev-master",
-            "source-reference": "0247e6f1658d76292c8ffe2c5106090bd36bd799",
-            "commit-date": "1346283670"
-        },
-        {
             "package": "swiftmailer/swiftmailer",
             "version": "dev-master",
             "alias-pretty-version": "4.2.x-dev",
@@ -256,8 +172,8 @@
         {
             "package": "symfony/symfony",
             "version": "dev-master",
-            "source-reference": "2982e6e678c86b48e9f2c3774302f1a804c2a297",
-            "commit-date": "1346320856"
+            "source-reference": "41ffd006e57b0955d44a2b07fd898689c0d63a56",
+            "commit-date": "1346482338"
         },
         {
             "package": "twig/extensions",
@@ -280,8 +196,80 @@
         {
             "package": "twig/twig",
             "version": "dev-master",
-            "source-reference": "f76ed618c890165fd107a9cd4a06c7d73da75b9c",
-            "commit-date": "1346324412"
+            "source-reference": "459720ff3b74ee0c0d159277c6f2f5df89d8a4f6",
+            "commit-date": "1346397138"
+        },
+        {
+            "package": "customscripts/datagrid-bundle",
+            "version": "dev-master",
+            "source-reference": "49a76d1f924896054eecefae0f2c02be4ef8a34a",
+            "commit-date": "1346323104"
+        },
+        {
+            "package": "doctrine/data-fixtures",
+            "version": "dev-master",
+            "source-reference": "779c3dfe446b6da893be87b908d6be28345d1e01",
+            "commit-date": "1341780535"
+        },
+        {
+            "package": "doctrine/doctrine-fixtures-bundle",
+            "version": "dev-master",
+            "source-reference": "186d605aa6b592bd577e07e0e9a2c420b02b2492",
+            "commit-date": "1345465418"
+        },
+        {
+            "package": "doctrine/doctrine-migrations-bundle",
+            "version": "dev-master",
+            "source-reference": "3792aa78445773387754c6853bbd7f4dcb31f486",
+            "commit-date": "1341472972"
+        },
+        {
+            "package": "doctrine/migrations",
+            "version": "dev-master",
+            "source-reference": "b86b4cc0a39714f0aa53b908d495beacfa0e4011",
+            "commit-date": "1343202693"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "alias-pretty-version": "2.3.x-dev",
+            "alias-version": "2.3.9999999.9999999-dev"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "dev-master",
+            "source-reference": "8fa580a58e73550b3f729e420d078784b154013f",
+            "commit-date": "1346185701"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "alias-pretty-version": "2.0.x-dev",
+            "alias-version": "2.0.9999999.9999999-dev"
+        },
+        {
+            "package": "knplabs/knp-menu",
+            "version": "dev-master",
+            "source-reference": "78f78d593117ac50ba3ab13664a7c99904f694d1",
+            "commit-date": "1345991530"
+        },
+        {
+            "package": "knplabs/knp-menu-bundle",
+            "version": "dev-master",
+            "source-reference": "dcbbf95363d2e36d507b481ac2124a0ae0ce6e67",
+            "commit-date": "1346242383"
+        },
+        {
+            "package": "stof/doctrine-extensions-bundle",
+            "version": "dev-master",
+            "alias-pretty-version": "1.1.x-dev",
+            "alias-version": "1.1.9999999.9999999-dev"
+        },
+        {
+            "package": "stof/doctrine-extensions-bundle",
+            "version": "dev-master",
+            "source-reference": "0247e6f1658d76292c8ffe2c5106090bd36bd799",
+            "commit-date": "1346283670"
         }
     ],
     "packages-dev": null,
