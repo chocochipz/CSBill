@@ -20,6 +20,7 @@
 		{% endstylesheets %}
 
 		<script type="text/javascript" src="{{ asset('js/modernizr.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/loader.js') }}"></script>
 	</head>
 	<body>
 		<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
@@ -33,7 +34,7 @@
 
 		<footer align="center">
 			{{ block('footer') }}
-			
+
 			<hr />
 			Powered by <a href="#" title="CSBill">CSBill</a>
 		</footer>
@@ -41,11 +42,23 @@
 		{% javascripts
 			"@CSCoreBundle/Resources/public/js/jquery.js"
 			"@CSCoreBundle/Resources/public/js/bootstrap.min.js"
-			"@CSCoreBundle/Resources/public/js//plugins.js"
+			"@CSCoreBundle/Resources/public/js/underscore.js"
+			"@CSCoreBundle/Resources/public/js/backbone.js"
+			"@BazingaExposeTranslationBundle/Resources/public/js/translation.js"
+			filter="?yui_js"
+		%}
+			<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+
+		<script src="{{ url('bazinga_exposetranslation_js') }}"></script>
+
+		{% javascripts
+		    "@CSCoreBundle/Resources/public/js//plugins.js"
 			"@CSCoreBundle/Resources/public/js//script.js"
 			filter="?yui_js"
 		%}
-			<script defer src="{{ asset_url }}"></script>
+			<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
+
 	</body>
 </html>

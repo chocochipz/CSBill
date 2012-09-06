@@ -20,12 +20,13 @@ class AppKernel extends Kernel
             new JMS\DiExtraBundle\JMSDiExtraBundle($this),
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
 
+            new Bazinga\ExposeTranslationBundle\BazingaExposeTranslationBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new CS\DataGridBundle\CSDataGridBundle(),
 
+            new CS\DataGridBundle\CSDataGridBundle(),
             new CS\CoreBundle\CSCoreBundle(),
             new CS\InstallerBundle\CSInstallerBundle(),
             new CS\UserBundle\CSUserBundle(),
