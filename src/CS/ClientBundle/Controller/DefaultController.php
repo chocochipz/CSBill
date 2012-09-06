@@ -16,6 +16,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 use CS\CoreBundle\Controller\Controller;
 use CS\ClientBundle\DataGrid\Grid;
+use CS\ClientBundle\Entity\Client;
+use CS\ClientBundle\Form\Type\ClientType;
 
 /**
  * @Route("/clients")
@@ -39,7 +41,11 @@ class DefaultController extends Controller
      */
     public function addAction()
     {
-        return array();
+        $client = new Client;
+
+        $form = $this->createForm(new ClientType, $client);
+
+        return array('form' => $form->createView());
     }
 
     /**

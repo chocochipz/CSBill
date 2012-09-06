@@ -1,0 +1,9 @@
+{% extends "CSCoreBundle:Layout:sidebar.html.twig" %}
+
+{% block title %}{{ 'Add Client'|trans }}{% endblock %}
+
+{% block content %}
+    <h1>{{ "Add Client"|trans }}</h1>
+
+    {{ form_widget(form) }}
+{% endblock %}
