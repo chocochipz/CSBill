@@ -21,8 +21,8 @@ class Main extends ContainerAware
     /**
      * Render the top menu
      *
-     * @param FactoryInterface $factory
-     * @param array $options
+     * @param  FactoryInterface $factory
+     * @param  array            $options
      * @return MenuItem
      */
     public function topMenu(FactoryInterface $factory, array $options)

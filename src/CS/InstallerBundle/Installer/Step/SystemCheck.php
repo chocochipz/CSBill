@@ -52,20 +52,19 @@ class SystemCheck extends Step
      */
     public function validate($request = array())
     {
-		$this->start();
+        $this->start();
 
-		$error = false;
+        $error = false;
 
-		foreach($this->check['recommended']['values'] as $value)
-		{
-			if(substr(trim($value), 0, 2) !== 'OK')
-			{
-				$value = str_replace(array('ERROR', 'WARNING'), '', $value);
-				$this->addError(sprintf('The following requirement were not met: %s', $value));
-				$this->addError('Please make sure all the requirements are met before continuing with the installation');
-				return false;
-			}
-		}
+        foreach ($this->check['recommended']['values'] as $value) {
+            if (substr(trim($value), 0, 2) !== 'OK') {
+                $value = str_replace(array('ERROR', 'WARNING'), '', $value);
+                $this->addError(sprintf('The following requirement were not met: %s', $value));
+                $this->addError('Please make sure all the requirements are met before continuing with the installation');
+
+                return false;
+            }
+        }
 
         return true;
     }
@@ -84,54 +83,52 @@ class SystemCheck extends Step
     {
         $this->root_dir = $this->get('kernel')->getRootDir();
 
-		$process = new Process(sprintf('php %s/check.php', $this->root_dir));
-		$process->setTimeout(3600);
-		$process->run();
-		if (!$process->isSuccessful()) {
-			throw new \RuntimeException($process->getErrorOutput());
-		}
+        $process = new Process(sprintf('php %s/check.php', $this->root_dir));
+        $process->setTimeout(3600);
+        $process->run();
+        if (!$process->isSuccessful()) {
+            throw new \RuntimeException($process->getErrorOutput());
+        }
 
-		$check = $process->getOutput();
+        $check = $process->getOutput();
 
-		$output = explode("\n", $check);
+        $output = explode("\n", $check);
 
-		$recommended = $this->getOutput($output, 'mandatory requirements');
-		$optional = $this->getOutput($output, 'optional recommendations');
+        $recommended = $this->getOutput($output, 'mandatory requirements');
+        $optional = $this->getOutput($output, 'optional recommendations');
 
-		$this->check = array('recommended' => $recommended, 'optional' => $optional);
+        $this->check = array('recommended' => $recommended, 'optional' => $optional);
     }
 
     /**
      * Parses through the output of the system check, and extracts the requirements
      *
-     * @param array $output The ouput generated from the system check
-     * @param string $header the header to look for to get the requirements
+     * @param  array  $output The ouput generated from the system check
+     * @param  string $header the header to look for to get the requirements
      * @return array
      */
     public function getOutput($output = array(), $header = '')
     {
-		while(($line = next($output)) !== false)
-		{
-			if(strpos(strtolower($line), strtolower($header)) !== false)
-			{
-				$content = array();
-				$heading = trim(str_replace('**', '', $line));
+        while (($line = next($output)) !== false) {
+            if (strpos(strtolower($line), strtolower($header)) !== false) {
+                $content = array();
+                $heading = trim(str_replace('**', '', $line));
 
-				do {
-					$line = next($output);
-				} while (substr($line, 0, 1) === '*');
+                do {
+                    $line = next($output);
+                } while (substr($line, 0, 1) === '*');
 
-				$line = next($output);
+                $line = next($output);
 
-				$line = next($output);
+                $line = next($output);
 
-				do {
-					$content[] = $line;
-					$line = next($output);
-				} while(substr(strtolower($line), 0, 2) !== '**' && $line);
-			}
-		}
+                do {
+                    $content[] = $line;
+                    $line = next($output);
+                } while (substr(strtolower($line), 0, 2) !== '**' && $line);
+            }
+        }
 
-		return array('heading' => $heading, 'values' => $content);
-	}
+        return array('heading' => $heading, 'values' => $content);
+    }
 }

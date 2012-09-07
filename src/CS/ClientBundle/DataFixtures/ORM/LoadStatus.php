@@ -6,12 +6,11 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use CS\ClientBundle\Entity\Status;
 
-
-class LoadStatus implements FixtureInterface {
-
-	public function load(ObjectManager $manager)
+class LoadStatus implements FixtureInterface
+{
+    public function load(ObjectManager $manager)
     {
-    	// Active
+        // Active
         $active = new Status();
         $active->setName('active');
         $manager->persist($active);

@@ -34,7 +34,7 @@ class ConfigureMenuEvent extends Event
 
     /**
      * @param \Knp\Menu\FactoryInterface $factory
-     * @param \Knp\Menu\ItemInterface $menu
+     * @param \Knp\Menu\ItemInterface    $menu
      */
     public function __construct(FactoryInterface $factory, ItemInterface $menu)
     {

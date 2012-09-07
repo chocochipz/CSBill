@@ -11,7 +11,6 @@
 namespace CS\InstallerBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -43,20 +42,18 @@ class InstallCommand extends Command
 
         try {
 
-            if($container->get('database_connection')->connect())
-            {
+            if ($container->get('database_connection')->connect()) {
                 try {
                     $repository = $container->get('doctrine.orm.entity_manager')->getRepository('CSUserBundle:User');
 
-                    if(count($repository->findAll()) > 0)
-                    {
+                    if (count($repository->findAll()) > 0) {
                         $output->writeln('<error>ERROR: The application is already installed.</error>');
+
                         return;
                     }
-                } catch(\Exception $e){}
+                } catch (\Exception $e) {}
             }
-        } catch(\PDOException $e)
-        {
+        } catch (\PDOException $e) {
             // if we get an exception here, the application isn't installed yet
         }
 
@@ -67,42 +64,34 @@ class InstallCommand extends Command
 
         $options = array();
 
-        foreach($arguments as $argument)
-        {
+        foreach ($arguments as $argument) {
             $name = $argument->getName();
 
-            if(in_array($name, $this->invalid_options))
-            {
+            if (in_array($name, $this->invalid_options)) {
                 continue;
             }
 
-            if(!$argument->acceptValue())
-            {
-                if($input->hasParameterOption('--'.$name))
-                {
+            if (!$argument->acceptValue()) {
+                if ($input->hasParameterOption('--'.$name)) {
                     $options[$name] = 'y';
                 } else {
                     do {
                         $value = $dialog->ask($output, '<question>'.$argument->getDescription().'</question>', $input->getParameterOption('--'.$name));
 
-                        if($value === 'n')
-                        {
+                        if ($value === 'n') {
                             return;
-                        } else if($value !== 'y')
-                        {
+                        } elseif ($value !== 'y') {
                             $output->writeln("<comment>Please only enter 'y' or 'n'</comment>");
                         }
-                    } while($value !== 'y');
+                    } while ($value !== 'y');
 
                     $options[$name] = $value;
                 }
             } else {
 
-                if(!$input->getParameterOption('--'.$name))
-                {
+                if (!$input->getParameterOption('--'.$name)) {
 
-                    if($input->hasParameterOption('--'.$name.'='))
-                    {
+                    if ($input->hasParameterOption('--'.$name.'=')) {
                        $value = '';
                     } else {
 
@@ -110,7 +99,7 @@ class InstallCommand extends Command
 
                         do {
                             $value = $dialog->ask($output, '<question>'.$argument->getDescription().'</question>', $value);
-                        } while($value === null);
+                        } while ($value === null);
                     }
 
                 } else {
@@ -134,10 +123,9 @@ class InstallCommand extends Command
 
             $output->writeln(sprintf('Installation: %s', $step->title));
 
-        } while($response !== false && stripos($response->getTargetUrl(), 'success') === false);
+        } while ($response !== false && stripos($response->getTargetUrl(), 'success') === false);
 
-        if(!$response)
-        {
+        if (!$response) {
             $errors = $step->getErrors();
             $output->writeln('<error>'.implode("\n", $errors).'</error>');
         } else {
@@ -145,4 +133,3 @@ class InstallCommand extends Command
         }
     }
 }
-

@@ -85,12 +85,11 @@ class Installer
 
             $key++;
 
-            if(!isset($this->steps[$key]))
-            {
-				$route = $this->getContainer()->get('router')->generate('_installer_success');
+            if (!isset($this->steps[$key])) {
+                $route = $this->getContainer()->get('router')->generate('_installer_success');
 
-				return new RedirectResponse($route);
-			}
+                return new RedirectResponse($route);
+            }
 
             $this->step($this->steps[$key]);
 
@@ -171,18 +170,18 @@ class Installer
      */
     public function getSteps()
     {
-		return $this->steps;
-	}
+        return $this->steps;
+    }
 
-	/**
-	 * Return the current active step
-	 *
-	 * @return string
-	 */
-	public function active()
-	{
-		return $this->getSession('step');
-	}
+    /**
+     * Return the current active step
+     *
+     * @return string
+     */
+    public function active()
+    {
+        return $this->getSession('step');
+    }
 
     /**
      * Creates an instance of the necessary step class

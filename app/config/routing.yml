@@ -7,7 +7,7 @@ CSInstallerBundle:
     resource: "@CSInstallerBundle/Controller/"
     type:     annotation
     prefix:   /
-    
+
 CSUserBundle:
     resource: "@CSUserBundle/Controller/"
     type:     annotation

@@ -49,6 +49,6 @@ class InstallController extends Controller
      */
     public function successAction()
     {
-		return array();
-	}
+        return array();
+    }
 }

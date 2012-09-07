@@ -16,8 +16,8 @@ use CS\DataGridBundle\Grid\Column\ColumnCollection;
 use CS\DataGridBundle\Grid\Action\ActionCollection;
 use CS\DataGridBundle\Grid\Action\Action;
 
-class Grid extends BaseGrid {
-
+class Grid extends BaseGrid
+{
     /**
      * returns the entity name for the cliets
      *
@@ -40,7 +40,7 @@ class Grid extends BaseGrid {
     /**
      * Manupulate the columns for the clients grid
      *
-     * @param ColumnCollection $collection
+     * @param  ColumnCollection $collection
      * @return void
      */
     public function getColumns(ColumnCollection $collection)
@@ -53,7 +53,7 @@ class Grid extends BaseGrid {
     /**
      * Adds the default CRUD actions for clients
      *
-     * @param ActionCollection $actions
+     * @param  ActionCollection $actions
      * @return void
      */
     public function getActions(ActionCollection $actions)

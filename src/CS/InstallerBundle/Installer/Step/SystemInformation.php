@@ -37,7 +37,7 @@ class SystemInformation extends Step
      * @var array $params
      */
     public $params = array(	'email_address' => '',
-							'password'		=> '');
+                            'password'		=> '');
 
     /**
      * Validate user and company info
@@ -47,17 +47,15 @@ class SystemInformation extends Step
      */
     public function validate($request = array())
     {
-		if(empty($request['email_address']))
-		{
-			$this->addError('Please enter an email address');
-		}
+        if (empty($request['email_address'])) {
+            $this->addError('Please enter an email address');
+        }
 
-		if(empty($request['password']))
-		{
-			$this->addError('Please enter a password');
-		}
+        if (empty($request['password'])) {
+            $this->addError('Please enter a password');
+        }
 
-		$this->params = $request;
+        $this->params = $request;
 
         return count($this->getErrors()) === 0;
     }
@@ -69,25 +67,25 @@ class SystemInformation extends Step
      */
     public function process($request = array())
     {
-		$user = new User;
+        $user = new User;
 
-		$encoder = $this->get('security.encoder_factory')->getEncoder($user);
+        $encoder = $this->get('security.encoder_factory')->getEncoder($user);
 
-		$password = $encoder->encodePassword($request['password'], $user->getSalt());
+        $password = $encoder->encodePassword($request['password'], $user->getSalt());
 
-		$user->setUsername('admin')
-			 ->setEmail($request['email_address'])
-			 ->setPassword($password);
+        $user->setUsername('admin')
+             ->setEmail($request['email_address'])
+             ->setPassword($password);
 
-		$em = $this->get('doctrine.orm.entity_manager');
+        $em = $this->get('doctrine.orm.entity_manager');
 
-		$role = $em->getRepository('CSUserBundle:Role')->findOneByName('super_admin');
+        $role = $em->getRepository('CSUserBundle:Role')->findOneByName('super_admin');
 
-		$user->addRole($role);
+        $user->addRole($role);
 
-		$em->persist($user);
-		$em->flush();
-	}
+        $em->persist($user);
+        $em->flush();
+    }
 
     /**
      * @return void
