@@ -104,4 +104,12 @@ class ContactType
     {
         return $this->detail;
     }
+
+    /**
+     * Return the contact type as a string
+     */
+    public function __toString()
+    {
+    	return $this->getName();
+    }
 }
