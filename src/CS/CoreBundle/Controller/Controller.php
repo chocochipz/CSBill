@@ -26,4 +26,57 @@ class Controller extends CoreController {
     {
     	return $this->get('doctrine.orm.entity_manager');
     }
+
+    /**
+     * Returns the current session object
+     *
+     * @return object
+     */
+    public function getSession()
+    {
+    	return $this->get('session');
+    }
+
+    /**
+     * Redirects the user to a path with a flash message
+     *
+     * @param string $route
+     * @param string $message
+     * @param string $status
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function redirectFlash($route, $message = '', $status = 'notice')
+    {
+    	$url = $this->generateUrl($route);
+
+    	$this->setFlash($status, $message);
+
+    	return $this->redirect($url);
+
+    }
+
+    /**
+     * Sets a flash message
+     *
+     * @param string $status
+     * @param string $message
+     * @return Controller
+     */
+    public function setFlash($status = 'notice', $message = '')
+    {
+    	$this->getSession()->getFlashBag()->add($status, $this->trans($message));
+
+    	return $this;
+    }
+
+    /**
+     * Translates a string
+     *
+     * @param string $message
+     * @return string
+     */
+    public function trans($message)
+    {
+    	return $this->get('translator')->trans($message);
+    }
 }
