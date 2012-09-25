@@ -19,8 +19,8 @@ class ContactDetailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+    	$builder->add('type');
         $builder->add('value');
-        $builder->add('type');
     }
 
     public function getName()
