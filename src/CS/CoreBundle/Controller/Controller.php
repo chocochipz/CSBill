@@ -13,4 +13,17 @@ namespace CS\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as CoreController;
 
-class Controller extends CoreController {}
+use JMS\DiExtraBundle\Annotation as DI;
+
+class Controller extends CoreController {
+
+	/**
+	 * Gets the entity manager for the current controller
+	 *
+	 * @return \Doctrine\ORM\Entityanager
+	 */
+    public function getEm()
+    {
+    	return $this->get('doctrine.orm.entity_manager');
+    }
+}
