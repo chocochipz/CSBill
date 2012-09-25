@@ -60,7 +60,7 @@ class Client
     /**
      * @var Status $status
      *
-     * @ORM\ManyToOne(targetEntity="Status", inversedBy="clients", cascade="ALL")
+     * @ORM\ManyToOne(targetEntity="Status", inversedBy="clients", cascade={"ALL"})
      * @Assert\Valid()
      */
     private $status;
@@ -268,6 +268,19 @@ class Client
         $contact->setClient($this);
 
         return $this;
+    }
+
+    /**
+     * Removes a contact
+     *
+     * @param  Contact $contact
+     * @return Client
+     */
+    public function removeContact(Contact $contact)
+    {
+    	$this->contacts->removeElement($contact);
+
+    	return $this;
     }
 
     /**
