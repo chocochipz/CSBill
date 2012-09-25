@@ -53,10 +53,12 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 		    
 		    form.find('fieldset:first').prepend(this.legend({"heading" : heading, "label" : this.options.label, "counter" : ++this.counter}));
 		    
-		    if(typeof form[1] !== undefined)
+		    var form = $('<div />').addClass('content').append(form);
+		    
+		    /*if(typeof form[1] !== undefined)
 		   	{
 		    	scripts.push($(form[1]).html());
-		   	}
+		   	}*/
 		    
 		    var view = new FormCollectionView({"el" : form}),
 		    	el = view.render().el;
@@ -68,10 +70,10 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 		    
 		    legend.html(head);
 		    
-		    for(var i = 0; i < scripts.length; i++)
+		    /*for(var i = 0; i < scripts.length; i++)
 		    {
 		    	$.globalEval(scripts[i]);
-		    }
+		    }*/
 		    
 		    Loader.call();
 		    
