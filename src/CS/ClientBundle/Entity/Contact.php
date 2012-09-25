@@ -92,6 +92,12 @@ class Contact
      * @var ArrayCollection $details
      *
      * @ORM\OneToMany(targetEntity="ContactDetail", mappedBy="contact", cascade="ALL")
+     *
+     * @Assert\Count(
+     *      min = "1",
+     *      minMessage = "You must add al least one contact detail for each contact"
+     * )
+     * @Assert\Valid()
      */
     private $details;
 
@@ -263,6 +269,19 @@ class Contact
         $detail->setContact($this);
 
         return $this;
+    }
+
+    /**
+     * Removes detail from the current contact
+     *
+     * @param  ContactDetail $detail
+     * @return Contact
+     */
+    public function removeDetail(ContactDetail $detail)
+    {
+    	$this->details->removeElement($detail);
+
+    	return $this;
     }
 
     /**
