@@ -19,23 +19,17 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 		"className"	: "content",
 		"icon" : '<i class="icon-plus-sign"></i>',
 		"addlink" : _.template('<a href="#" class="add_form_collection_link"><%= icon %> <%= label %></a>'),
-		"legend" : _.template('<legend class="collection-heading"><%= label %> <%= counter %></legend>'),
+		"legend" : _.template('<legend class="collection-heading"><h<%= heading %>><%= label %> <%= counter %></h<%= heading %>></legend>'),
 		"counter" : 0,
-		
-		/*"events" : {
-			"click a.add_form_collection_link" : "addForm",
-		},*/
+		"heading" : 2,
 
 		"initialize": function () {
-			
 			this.render();
-			
         },
         "render" : function() {
         	
-			var $this = this;
-			
-			var add_link = $(this.createAddLink()).on("click", function(e) { e.preventDefault(); $this.addForm($this, this); });
+			var $this = this,
+				add_link = $(this.createAddLink()).on("click", function(e) { e.preventDefault(); $this.addForm($this, this); });
 
 			this.$el.append(add_link);
 			
@@ -50,35 +44,35 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
         	return this.addlink({"icon" : this.icon, "label" : ExposeTranslation.get('Add') + " " + this.options.label});
         },
         "addForm" : function($this, l) {
-        	
-        	var prototype  = this.$el.attr('data-prototype');
-
-		    var form = $(prototype.replace(/__name__/g, this.$el.children('.content').length));
+	
+        	var prototype  = this.$el.attr('data-prototype'),
+        		form = $(prototype.replace(/__name__/g, this.$el.children('.control-group').length)),
+        		parents = this.$el.parents('.form-collection').length,
+        		heading = this.heading + (parents === 2 ? 3 : parents),
+        		scripts = new Array();
 		    
-		    form.find('fieldset:first').prepend(this.legend({"label" : this.options.label, "counter" : ++this.counter}));
-		    
-		    var scripts = new Array();
+		    form.find('fieldset:first').prepend(this.legend({"heading" : heading, "label" : this.options.label, "counter" : ++this.counter}));
 		    
 		    if(typeof form[1] !== undefined)
 		   	{
 		    	scripts.push($(form[1]).html());
 		   	}
 		    
-		    var view = new FormCollectionView({"el" : form});
+		    var view = new FormCollectionView({"el" : form}),
+		    	el = view.render().el;
+
+		    $(l).before(el);
 		    
-		    //$(l).before(view.render().el);
+		    var legend = $(el).find('.form-collection').siblings('legend'),
+		    	head = $('<h' + (heading + 1) + ' />').html(legend.children().first().html());
 		    
-		    //$this.$el.prepend(r);
-		    
-		    this.$el.prepend(view.render().el);
-		    
-		    //$this.$el.find('.add_form_collection_link:last').before(view.render().el);
+		    legend.html(head);
 		    
 		    for(var i = 0; i < scripts.length; i++)
 		    {
 		    	$.globalEval(scripts[i]);
 		    }
-
+		    
 		    Loader.call();
 		    
 		    return view;
@@ -93,14 +87,12 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 		
 		"render" : function(){
 			
-			var $this = this;
-			
-			var template = this.template({"icon" : this.icon, "label" : ExposeTranslation.get('delete')});
-			
-			var tmpl = $(template).on("click", function(e){
-				e.preventDefault();
-				$this.destroy($this);
-			});
+			var $this = this,
+				template = this.template({"icon" : this.icon, "label" : ExposeTranslation.get('delete')}),
+				tmpl = $(template).on("click", function(e){
+							e.preventDefault();
+							$this.destroy($this);
+				});
 			
 			this.$el.prepend(tmpl);
 				
@@ -115,7 +107,6 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 	});
 	
 	$.fn.formCollection = function(options) {
-		
 		var view = new MasterView($.extend({"el" : this}, options));
 	
 		return view;
