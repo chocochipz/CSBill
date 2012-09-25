@@ -60,8 +60,8 @@ class Grid extends BaseGrid
     {
         $add = new Action('Add Client');
 
-        $add->setAction('_client_add');
-        $add->attributes(array('class' => 'btn btn-primary'));
+        $add->setAction('_client_add')
+        	->attributes(array('class' => 'btn btn-primary'));
 
         $edit = new Action('Edit Client');
 
