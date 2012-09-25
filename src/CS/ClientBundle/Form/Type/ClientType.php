@@ -23,7 +23,7 @@ class ClientType extends AbstractType
     {
         $builder->add('name');
         $builder->add('website');
-        $builder->add('status');
+        $builder->add('status', null, array('required' => true));
         $builder->add('contacts', 'collection', array('type' => new ContactType(),
                                                       'allow_add' => true,
                                                       'allow_delete' => true,
