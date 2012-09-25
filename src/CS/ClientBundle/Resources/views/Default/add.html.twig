@@ -5,5 +5,14 @@
 {% block content %}
     <h1>{{ "Add Client"|trans }}</h1>
 
-    {{ form_widget(form) }}
+    <form action="{{ path("_client_add") }}" method="post"{{ form_enctype(form) }}>
+
+    	{{ form_widget(form) }}
+
+    	<div class="control-group">
+    		<div class="controls">
+    			<input type="submit" value="{{ "save"|trans }}" class="btn" />
+    		</div>
+    	</div>
+    </form>
 {% endblock %}
