@@ -45,6 +45,21 @@ class DefaultController extends Controller
 
         $form = $this->createForm(new ClientType, $client);
 
+        $request = $this->getRequest();
+
+        if($request->getMethod() === 'POST')
+        {
+        	$form->bindRequest($request);
+
+        	if($form->isValid())
+        	{
+        		var_dump($this->getEm()->persist($client));
+        		var_dump($this->getEm()->flush());
+
+        		exit;
+        	}
+        }
+
         return array('form' => $form->createView());
     }
 
