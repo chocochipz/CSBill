@@ -53,10 +53,12 @@ class DefaultController extends Controller
 
         	if($form->isValid())
         	{
-        		var_dump($this->getEm()->persist($client));
-        		var_dump($this->getEm()->flush());
+        		$em = $this->getEm();
 
-        		exit;
+        		$em->persist($client);
+        		$em->flush();
+
+        		$this->redirectFlash('_clients_index', "Client Successfully Saved!", "success");
         	}
         }
 
