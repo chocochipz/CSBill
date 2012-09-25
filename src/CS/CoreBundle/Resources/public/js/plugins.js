@@ -17,37 +17,68 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 	var MasterView = Backbone.View.extend({
 		"tagName"	: "div",
 		"className"	: "content",
-		"icon" : '<i class="icon-plus-sign" />',
-		"addlink" : '<a href="#" class="add_form_collection_link"><%= icon %> <%= label %></a>',
+		"icon" : '<i class="icon-plus-sign"></i>',
+		"addlink" : _.template('<a href="#" class="add_form_collection_link"><%= icon %> <%= label %></a>'),
+		"legend" : _.template('<legend class="collection-heading"><%= label %> <%= counter %></legend>'),
+		"counter" : 0,
+		
+		/*"events" : {
+			"click a.add_form_collection_link" : "addForm",
+		},*/
 
 		"initialize": function () {
 			
+			this.render();
+			
+        },
+        "render" : function() {
+        	
 			var $this = this;
 			
-			var add_link = $(this.createAddLink()).on("click", function() { $this.addForm($this) });
+			var add_link = $(this.createAddLink()).on("click", function(e) { e.preventDefault(); $this.addForm($this, this); });
+
 			this.$el.append(add_link);
+			
+			if(this.$el.find('fieldset:first').children().length > 0)
+			{
+				this.$el.find('fieldset:first').prepend($this.legend({"label" : $this.options.label, "counter" : ++$this.counter}));
+			}
+
+        	return this;
         },
         "createAddLink" : function(){
-        	return _.template(this.addlink, {"icon" : this.icon, "label" : this.options.label});
+        	return this.addlink({"icon" : this.icon, "label" : ExposeTranslation.get('Add') + " " + this.options.label});
         },
-        "addForm" : function($this) {
+        "addForm" : function($this, l) {
         	
-        	var prototype  = $this.$el.attr('data-prototype');
+        	var prototype  = this.$el.attr('data-prototype');
 
-		    var form = $(prototype.replace(/__name__/g, $this.$el.children('.content').length));
+		    var form = $(prototype.replace(/__name__/g, this.$el.children('.content').length));
 		    
+		    form.find('fieldset:first').prepend(this.legend({"label" : this.options.label, "counter" : ++this.counter}));
+		    
+		    var scripts = new Array();
 		    
 		    if(typeof form[1] !== undefined)
 		   	{
-		    	var script = $(form[1]);
-		    	
-		    	$.globalEval(script.html());
+		    	scripts.push($(form[1]).html());
 		   	}
 		    
 		    var view = new FormCollectionView({"el" : form});
 		    
-		    $this.$el.prepend(view.render().el);
+		    //$(l).before(view.render().el);
 		    
+		    //$this.$el.prepend(r);
+		    
+		    this.$el.prepend(view.render().el);
+		    
+		    //$this.$el.find('.add_form_collection_link:last').before(view.render().el);
+		    
+		    for(var i = 0; i < scripts.length; i++)
+		    {
+		    	$.globalEval(scripts[i]);
+		    }
+
 		    Loader.call();
 		    
 		    return view;
@@ -57,20 +88,17 @@ window.log = function f(){ log.history = log.history || []; log.history.push(arg
 
 	var FormCollectionView = Backbone.View.extend({
 		
-		"template" : '<a class="pull-right remove-form" href="#"><%= icon %> <%=label%></a>',
-		
+		"template" : _.template('<a class="pull-right remove-form" href="#"><%= icon %> <%=label%></a>'),
 		"icon" : '<i class="icon-remove"></i> ',
 		
-		"events" : {
-			"click a.remove-form" : "destroy"
-		},
 		"render" : function(){
 			
 			var $this = this;
 			
-			var template = _.template(this.template, {"icon" : this.icon, "label" : ExposeTranslation.get('delete')});
+			var template = this.template({"icon" : this.icon, "label" : ExposeTranslation.get('delete')});
 			
-			var tmpl = $(template).on("click", function(){
+			var tmpl = $(template).on("click", function(e){
+				e.preventDefault();
 				$this.destroy($this);
 			});
 			
