@@ -20,7 +20,7 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group{{ errors|length > 0 ? ' error' : '' }}">
+    <div class="control-group{{ errors|length > 0 ? ' error' : '' }} {{ form.vars.attr.class|default('') }}">
 
      {#
         {% if 'checkbox' in form.vars.types %}
@@ -103,7 +103,9 @@
 {% endblock form_label %}
 
 {% block collection_widget %}
-    {{ parent() }}
+	<div class="form-collection">
+    	{{ parent() }}
+    </div>
 
     <script type="text/javascript">
 		Loader.add(function(){
