@@ -12,9 +12,18 @@ namespace CS\InstallerBundle\Installer;
 
 interface StepInterface
 {
+    /**
+     * @return boolean
+     */
     public function validate($request = array());
 
+    /**
+     * @return void
+     */
     public function process($request = array());
 
+    /**
+     * @return void
+     */
     public function start();
 }

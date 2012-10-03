@@ -19,7 +19,7 @@ class ContactDetailType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-    	$builder->add('type', null, array('attr' => array('class' => 'pull-left')));
+        $builder->add('type', null, array('attr' => array('class' => 'pull-left')));
         $builder->add('value');
     }
 

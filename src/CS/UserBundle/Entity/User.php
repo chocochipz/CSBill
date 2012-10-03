@@ -223,7 +223,7 @@ class User implements AdvancedUserInterface, EquatableInterface
      * Set active
      *
      * @param  boolean|integer $active
-     * @return User
+     * @return boolean
      */
     public function setActive($active)
     {
@@ -254,7 +254,7 @@ class User implements AdvancedUserInterface, EquatableInterface
      * Set created
      *
      * @param  \DateTime $created
-     * @return Client
+     * @return User
      */
     public function setCreated(\DateTime $created)
     {
@@ -266,7 +266,7 @@ class User implements AdvancedUserInterface, EquatableInterface
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCreated()
     {
@@ -277,7 +277,7 @@ class User implements AdvancedUserInterface, EquatableInterface
      * Set updated
      *
      * @param  \DateTime $updated
-     * @return Client
+     * @return User
      */
     public function setUpdated(\DateTime $updated)
     {
@@ -289,7 +289,7 @@ class User implements AdvancedUserInterface, EquatableInterface
     /**
      * Get updated
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getUpdated()
     {
@@ -300,7 +300,7 @@ class User implements AdvancedUserInterface, EquatableInterface
      * Set deleted
      *
      * @param  \DateTime $deleted
-     * @return Client
+     * @return User
      */
     public function setDeleted(\DateTime $deleted)
     {
@@ -312,7 +312,7 @@ class User implements AdvancedUserInterface, EquatableInterface
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDeleted()
     {

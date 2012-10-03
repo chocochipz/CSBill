@@ -42,7 +42,7 @@ class Inflector
    * @access public
    * @static
    * @param    string    $word    English noun to pluralize
-   * @return string Plural noun
+   * @return mixed Plural noun
    */
   public function pluralize($word)
   {
@@ -77,13 +77,13 @@ class Inflector
 
     $lowercased_word = strtolower($word);
 
-    foreach ($uncountable as $_uncountable){
-      if(substr($lowercased_word,(-1*strlen($_uncountable))) == $_uncountable){
+    foreach ($uncountable as $_uncountable) {
+      if (substr($lowercased_word,(-1*strlen($_uncountable))) == $_uncountable) {
         return $word;
       }
     }
 
-    foreach ($irregular as $_plural=> $_singular){
+    foreach ($irregular as $_plural=> $_singular) {
       if (preg_match('/('.$_plural.')$/i', $word, $arr)) {
         return preg_replace('/('.$_plural.')$/i', substr($arr[0],0,1).substr($_singular,1), $word);
       }
@@ -94,6 +94,7 @@ class Inflector
         return preg_replace($rule, $replacement, $word);
       }
     }
+
     return false;
 
   }
@@ -104,7 +105,7 @@ class Inflector
    * @access public
    * @static
    * @param    string    $word    English noun to singularize
-   * @return string Singular noun.
+   * @return mixed Singular noun.
    */
   public function singularize($word)
   {
@@ -145,13 +146,13 @@ class Inflector
       'move' => 'moves');
 
     $lowercased_word = strtolower($word);
-    foreach ($uncountable as $_uncountable){
-      if(substr($lowercased_word,(-1*strlen($_uncountable))) == $_uncountable){
+    foreach ($uncountable as $_uncountable) {
+      if (substr($lowercased_word,(-1*strlen($_uncountable))) == $_uncountable) {
         return $word;
       }
     }
 
-    foreach ($irregular as $_plural=> $_singular){
+    foreach ($irregular as $_plural=> $_singular) {
       if (preg_match('/('.$_singular.')$/i', $word, $arr)) {
         return preg_replace('/('.$_singular.')$/i', substr($arr[0],0,1).substr($_plural,1), $word);
       }
@@ -187,6 +188,7 @@ class Inflector
   public function titleize($word, $uppercase = '')
   {
     $uppercase = $uppercase == 'first' ? 'ucfirst' : 'ucwords';
+
     return $uppercase($this->humanize($this->underscore($word)));
   }
 
@@ -201,7 +203,7 @@ class Inflector
    * @static
    * @see variablize
    * @param    string    $word    Word to convert to camel case
-   * @return string UpperCamelCasedWord
+   * @return mixed UpperCamelCasedWord
    */
   public function camelize($word)
   {
@@ -248,6 +250,7 @@ class Inflector
   public function humanize($word, $uppercase = '')
   {
     $uppercase = $uppercase == 'all' ? 'ucwords' : 'ucfirst';
+
     return $uppercase(str_replace('_',' ',preg_replace('/_id$/', '',$word)));
   }
 
@@ -267,6 +270,7 @@ class Inflector
   public function variablize($word)
   {
     $word = $this->camelize($word);
+
     return strtolower($word[0]).substr($word,1);
   }
 
@@ -312,11 +316,11 @@ class Inflector
    * @access public
    * @static
    * @param    integer    $number    Number to get its ordinal value
-   * @return string Ordinal representation of given string.
+   * @return string|null Ordinal representation of given string.
    */
   public function ordinalize($number)
   {
-    if (in_array(($number % 100),range(11,13))){
+    if (in_array(($number % 100),range(11,13))) {
       return $number.'th';
     } else {
       switch (($number % 10)) {

@@ -12,7 +12,6 @@
 namespace CS\CoreBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Knp\Menu\MenuItem;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use CS\CoreBundle\Event\ConfigureMenuEvent;
 
@@ -21,9 +20,9 @@ class Main extends ContainerAware
     /**
      * Render the top menu
      *
-     * @param  FactoryInterface $factory
-     * @param  array            $options
-     * @return MenuItem
+     * @param  FactoryInterface        $factory
+     * @param  array                   $options
+     * @return \Knp\Menu\ItemInterface
      */
     public function topMenu(FactoryInterface $factory, array $options)
     {

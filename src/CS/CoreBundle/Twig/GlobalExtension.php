@@ -23,52 +23,52 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  */
 class GlobalExtension extends Twig_Extension
 {
-	/**
-	 * @DI\Inject("service_container")
-	 *
-	 * @var ContainerInterface
-	 */
-	public $container;
+    /**
+     * @DI\Inject("service_container")
+     *
+     * @var ContainerInterface
+     */
+    public $container;
 
- 	/**
- 	 * (non-PHPdoc)
- 	 * @see Twig_Extension::getGlobals()
- 	 */
-	public function getGlobals()
-	{
-		return array(
-					'sessionId' => session_id(),
-					'query'		=> $this->getQuery(),
-					'today'		=> new \DateTime,
-				);
-	}
+     /**
+      * (non-PHPdoc)
+      * @see Twig_Extension::getGlobals()
+      */
+    public function getGlobals()
+    {
+        return array(
+                    'sessionId' => session_id(),
+                    'query'		=> $this->getQuery(),
+                    'today'		=> new \DateTime,
+                );
+    }
 
-	/**
-	 * Gets all the query parameters
-	 *
-	 * @return array
-	 */
-	protected function getQuery()
-	{
-		$request = $this->container->get('request');
+    /**
+     * Gets all the query parameters
+     *
+     * @return array
+     */
+    protected function getQuery()
+    {
+        $request = $this->container->get('request');
 
-		$params = array_merge($request->query->all(), $request->attributes->all());
+        $params = array_merge($request->query->all(), $request->attributes->all());
 
-		foreach ($params as $key => $param) {
-			if (substr($key, 0, 1) == '_') {
-				unset($params[$key]);
-			}
-		}
+        foreach ($params as $key => $param) {
+            if (substr($key, 0, 1) == '_') {
+                unset($params[$key]);
+            }
+        }
 
-		return $params;
-	}
+        return $params;
+    }
 
-	/**
-	 * (non-PHPdoc)
-	 * @see Twig_ExtensionInterface::getName()
-	 */
- 	public function getName()
- 	{
- 		return 'global_extension';
- 	}
+    /**
+     * (non-PHPdoc)
+     * @see Twig_ExtensionInterface::getName()
+     */
+     public function getName()
+     {
+         return 'global_extension';
+     }
  }

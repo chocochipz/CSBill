@@ -47,19 +47,17 @@ class DefaultController extends Controller
 
         $request = $this->getRequest();
 
-        if($request->getMethod() === 'POST')
-        {
-        	$form->bindRequest($request);
+        if ($request->getMethod() === 'POST') {
+            $form->bindRequest($request);
 
-        	if($form->isValid())
-        	{
-        		$em = $this->getEm();
+            if ($form->isValid()) {
+                $em = $this->getEm();
 
-        		$em->persist($client);
-        		$em->flush();
+                $em->persist($client);
+                $em->flush();
 
-        		$this->redirectFlash('_clients_index', "Client Successfully Saved!", "success");
-        	}
+                $this->redirectFlash('_clients_index', "Client Successfully Saved!", "success");
+            }
         }
 
         return array('form' => $form->createView());

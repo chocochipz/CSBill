@@ -157,7 +157,7 @@ class Client
     /**
      * Get status
      *
-     * @return Status
+     * @return string
      */
     public function getStatus()
     {
@@ -278,9 +278,9 @@ class Client
      */
     public function removeContact(Contact $contact)
     {
-    	$this->contacts->removeElement($contact);
+        $this->contacts->removeElement($contact);
 
-    	return $this;
+        return $this;
     }
 
     /**

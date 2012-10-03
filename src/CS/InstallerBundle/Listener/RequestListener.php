@@ -102,7 +102,7 @@ class RequestListener
     /**
      * Sets an instance of the service container
      *
-     * @param  ContainerAwareInterface $container
+     * @param  ContainerInterface $container
      * @return void
      */
 

@@ -52,7 +52,7 @@ abstract class Step implements StepInterface, \ArrayAccess
      * Gets a service from the service container
      *
      * @param  string $service
-     * @return mixed
+     * @return object
      */
     public function get($service = '')
     {

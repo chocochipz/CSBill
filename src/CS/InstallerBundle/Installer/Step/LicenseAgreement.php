@@ -56,6 +56,7 @@ class LicenseAgreement extends Step
 
     /**
      * Not implemented
+     * @param array $request
      */
     public function process($request = array()){}
 
