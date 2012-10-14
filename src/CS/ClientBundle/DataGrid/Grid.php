@@ -63,7 +63,7 @@ class Grid extends BaseGrid
         $add->setAction('_client_add')
         	->attributes(array('class' => 'btn btn-primary'));
 
-        $edit = new Action('Edit Client');
+        /*$edit = new Action('Edit Client');
 
         $edit->setAction('_client_edit')
             ->requireRow()
@@ -71,9 +71,9 @@ class Grid extends BaseGrid
             ->onClick('do something cool')
             ->attributes(array('class' => 'btn btn-info'))
             ->icon('filter icon-white')
-            ->showWhenEmpty(false);
+            ->showWhenEmpty(false);*/
 
         $actions->add($add);
-        $actions->add($edit);
+        //$actions->add($edit);
     }
 }
