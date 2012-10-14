@@ -30,7 +30,7 @@ class InflectorExtension extends \Twig_Extension
      */
     public function getFilters()
     {
-        return array('singular' => new \Twig_Filter_Method($this, 'singular', array('safe' => 'html')));
+        return array('singular' => new \Twig_Filter_Method($this, 'singular', array('is_safe' => array('html'))));
     }
 
     /**
