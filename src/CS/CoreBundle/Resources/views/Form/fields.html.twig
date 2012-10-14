@@ -20,7 +20,7 @@
 
 {% block form_row %}
 {% spaceless %}
-    <div class="control-group{{ errors|length > 0 ? ' error' : '' }} {{ form.vars.attr.class|default('') }}">
+    <div class="control-group{{ errors|length > 0 ? ' error' : '' }} {{ form.getVars().attr.class|default('') }}">
 
      {#
         {% if 'checkbox' in form.vars.types %}
@@ -109,7 +109,7 @@
 
     <script type="text/javascript">
 		Loader.add(function(){
-				$('#{{ form.vars.id }}').formCollection({'label' : '{{ form.vars.label|default(form.vars.name)|singular|humanize }}'});
+				$('#{{ form.getVars().id }}').formCollection({'label' : '{{ form.getVars().label|default(form.getVars().name)|singular|humanize }}'});
 			});
     </script>
 {% endblock collection_widget %}
