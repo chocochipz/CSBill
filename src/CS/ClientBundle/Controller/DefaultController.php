@@ -18,9 +18,11 @@ use CS\CoreBundle\Controller\Controller;
 use CS\ClientBundle\DataGrid\Grid;
 use CS\ClientBundle\Entity\Client;
 use CS\ClientBundle\Form\Type\ClientType;
+use CS\CoreBundle\Annotation\Menu;
 
 /**
  * @Route("/clients")
+ * @Menu("CSClientBundle:Main:Sidebar", block="sidebar")
  */
 class DefaultController extends Controller
 {
