@@ -22,7 +22,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @Gedmo\Loggable()
  * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
-class User implements AdvancedUserInterface, EquatableInterface
+class User implements AdvancedUserInterface, EquatableInterface, \Serializable
 {
     /**
      * @var integer $id
@@ -394,5 +394,15 @@ class User implements AdvancedUserInterface, EquatableInterface
     public function isEnabled()
     {
         return $this->isActive();
+    }
+
+    public function serialize()
+    {
+    	return json_encode(array($this->id, $this->username, $this->salt, $this->password, $this->email, $this->active, $this->created, $this->updated, $this->deleted));
+    }
+
+    public function unserialize($object)
+    {
+    	return list($this->id, $this->username, $this->salt, $this->password, $this->email, $this->active, $this->created, $this->updated, $this->deleted) = json_decode($object);
     }
 }
