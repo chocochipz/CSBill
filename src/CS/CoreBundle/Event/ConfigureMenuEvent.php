@@ -18,11 +18,6 @@ use Symfony\Component\EventDispatcher\Event;
 class ConfigureMenuEvent extends Event
 {
     /**
-     * @const CONFIGURE
-     */
-    const CONFIGURE = 'cs_core.top_menu';
-
-    /**
      * @var $factory
      */
     private $factory;
