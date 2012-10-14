@@ -58,7 +58,7 @@ class DefaultController extends Controller
         		$em->persist($client);
         		$em->flush();
 
-        		$this->redirectFlash('_clients_index', "Client Successfully Saved!", "success");
+        		$this->redirectFlash('_client_index', "Client Successfully Saved!", "success");
         	}
         }
 
