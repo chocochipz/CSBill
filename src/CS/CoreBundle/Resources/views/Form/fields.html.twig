@@ -109,7 +109,7 @@
 
     <script type="text/javascript">
 		Loader.add(function(){
-				$('#{{ form.getVars().id }}').formCollection({'label' : '{{ form.getVars().label|default(form.getVars().name)|singular|humanize }}'});
+				$('#{{ form.getVars().id }}').formCollection({'label' : '{{ form.getVars().label|default(form.getVars().name)|humanize }}'});
 			});
     </script>
 {% endblock collection_widget %}

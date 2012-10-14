@@ -13,18 +13,16 @@ namespace CS\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as CoreController;
 
-use JMS\DiExtraBundle\Annotation as DI;
-
-class Controller extends CoreController {
-
-	/**
-	 * Gets the entity manager for the current controller
-	 *
-	 * @return \Doctrine\ORM\Entityanager
-	 */
+class Controller extends CoreController
+{
+    /**
+     * Gets the entity manager for the current controller
+     *
+     * @return \Doctrine\ORM\Entityanager
+     */
     public function getEm()
     {
-    	return $this->get('doctrine.orm.entity_manager');
+        return $this->get('doctrine.orm.entity_manager');
     }
 
     /**
@@ -34,49 +32,49 @@ class Controller extends CoreController {
      */
     public function getSession()
     {
-    	return $this->get('session');
+        return $this->get('session');
     }
 
     /**
      * Redirects the user to a path with a flash message
      *
-     * @param string $route
-     * @param string $message
-     * @param string $status
+     * @param  string                                             $route
+     * @param  string                                             $message
+     * @param  string                                             $status
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function redirectFlash($route, $message = '', $status = 'notice')
     {
-    	$url = $this->generateUrl($route);
+        $url = $this->generateUrl($route);
 
-    	$this->setFlash($status, $message);
+        $this->setFlash($status, $message);
 
-    	return $this->redirect($url);
+        return $this->redirect($url);
 
     }
 
     /**
      * Sets a flash message
      *
-     * @param string $status
-     * @param string $message
+     * @param  string     $status
+     * @param  string     $message
      * @return Controller
      */
     public function setFlash($status = 'notice', $message = '')
     {
-    	$this->getSession()->getFlashBag()->add($status, $this->trans($message));
+        $this->getSession()->getFlashBag()->add($status, $this->trans($message));
 
-    	return $this;
+        return $this;
     }
 
     /**
      * Translates a string
      *
-     * @param string $message
+     * @param  string $message
      * @return string
      */
     public function trans($message)
     {
-    	return $this->get('translator')->trans($message);
+        return $this->get('translator')->trans($message);
     }
 }

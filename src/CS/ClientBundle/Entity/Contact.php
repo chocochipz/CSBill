@@ -279,9 +279,9 @@ class Contact
      */
     public function removeDetail(ContactDetail $detail)
     {
-    	$this->details->removeElement($detail);
+        $this->details->removeElement($detail);
 
-    	return $this;
+        return $this;
     }
 
     /**

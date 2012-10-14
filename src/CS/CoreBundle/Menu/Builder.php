@@ -11,9 +11,6 @@
 
 namespace CS\CoreBundle\Menu;
 
-use CS\CoreBundle\Event\ConfigureMenuEvent;
-
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
 use JMS\DiExtraBundle\Annotation as DI;
@@ -21,44 +18,44 @@ use JMS\DiExtraBundle\Annotation as DI;
 /**
  * @DI\Service("cs_core.menu_builder")
  */
-class Builder extends ContainerAware {
+class Builder extends ContainerAware
+{
+    /**
+     * @DI\Inject("service_container");
+     */
+    public $container;
 
-	/**
-	 * @DI\Inject("service_container");
-	 */
-	public $container;
+    public function getFactory()
+    {
+        $factory = $this->container->get('knp_menu.factory');
 
-	public function getFactory()
-	{
-		$factory = $this->container->get('knp_menu.factory');
+        return $factory;
+    }
 
-		return $factory;
-	}
+    public function sidebarMenu()
+    {
+        $factory = $this->getFactory();
 
-	public function sidebarMenu()
-	{
-		$factory = $this->getFactory();
+        $menu = $factory->createItem('root');
 
-		$menu = $factory->createItem('root');
+        $menu->addChild('Dashboard', array('route' => '_dashboard'));
 
-		$menu->addChild('Dashboard', array('route' => '_dashboard'));
+        $menu->setChildrenAttributes(array('class' => 'nav nav-list'));
 
-		$menu->setChildrenAttributes(array('class' => 'nav nav-list'));
+        return $menu;
+    }
 
-		return $menu;
-	}
+    public function topMenu()
+    {
+        $factory = $this->getFactory();
 
-	public function topMenu()
-	{
-		$factory = $this->getFactory();
+        $menu = $factory->createItem('root');
 
-		$menu = $factory->createItem('root');
+        $menu->setChildrenAttribute('class', 'nav');
 
-		$menu->setChildrenAttribute('class', 'nav');
+        $menu->addChild('Home', array('route' => '_dashboard'));
+        $menu->addChild('Clients', array('route' => '_client_index'));
 
-		$menu->addChild('Home', array('route' => '_dashboard'));
-		$menu->addChild('Clients', array('route' => '_client_index'));
-
-		return $menu;
-	}
+        return $menu;
+    }
 }

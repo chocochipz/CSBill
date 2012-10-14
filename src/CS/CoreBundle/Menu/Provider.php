@@ -38,45 +38,45 @@ class Provider implements MenuProviderInterface
     /**
      * Retrieves a menu by its name
      *
-     * @param string $name
-     * @param array $options
+     * @param  string                    $name
+     * @param  array                     $options
      * @return \Knp\Menu\ItemInterface
      * @throws \InvalidArgumentException if the menu does not exists
      */
     public function get($name, array $options = array())
     {
-    	$method = $this->getMethod($name);
+        $method = $this->getMethod($name);
 
-    	$menu = isset($this->items[$name]) ? $this->items[$name] :  $this->builder->{$method}();
+        $menu = isset($this->items[$name]) ? $this->items[$name] :  $this->builder->{$method}();
 
-		if ($menu === null) {
-			throw new \InvalidArgumentException(sprintf('The menu "%s" is not defined.', $name));
-		}
+        if ($menu === null) {
+            throw new \InvalidArgumentException(sprintf('The menu "%s" is not defined.', $name));
+        }
 
-		return $menu;
+        return $menu;
     }
 
     public function addItem($name, $menu)
     {
-    	$this->items[$name] = $menu;
+        $this->items[$name] = $menu;
     }
 
     /**
      * Checks whether a menu exists in this provider
      *
-     * @param string $name
-     * @param array $options
+     * @param  string $name
+     * @param  array  $options
      * @return bool
      */
     public function has($name, array $options = array())
     {
-    	$method = $this->getMethod($name);
+        $method = $this->getMethod($name);
 
         return isset($this->items[$name]) || method_exists($this->builder, $method);
     }
 
     public function getMethod($name)
     {
-    	return strtolower($name).'Menu';
+        return strtolower($name).'Menu';
     }
 }

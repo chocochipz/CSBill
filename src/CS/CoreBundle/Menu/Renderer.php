@@ -12,7 +12,6 @@
 namespace CS\CoreBundle\Menu;
 
 use Knp\Menu\Renderer\ListRenderer;
-use Knp\Menu\ItemInterface;
 use Knp\Menu\Matcher\Matcher;
 use Knp\Menu\Silex\Voter\RouteVoter;
 use JMS\DiExtraBundle\Annotation as DI;

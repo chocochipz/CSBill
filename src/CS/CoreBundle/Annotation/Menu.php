@@ -14,11 +14,11 @@ namespace CS\CoreBundle\Annotation;
 /**
  * @Annotation
  */
-final class Menu {
+final class Menu
+{
+    /** @var string */
+    public $menu;
 
-	/** @var string */
-	public $menu;
-
-	/** @var string */
-	public $block;
+    /** @var string */
+    public $block;
 }
