@@ -7,7 +7,9 @@
 {%  block container %}
 	<div class="row-fluid">
 		<aside class="span2 well sidebar">
-			{{  block('sidebar') }}
+			{% block sidebar %}
+				{{ menu('sidebar') }}
+			{% endblock %}
 		</aside>
 
 		<div class="span10">
