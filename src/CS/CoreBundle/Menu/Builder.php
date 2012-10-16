@@ -11,51 +11,51 @@
 
 namespace CS\CoreBundle\Menu;
 
-use Symfony\Component\DependencyInjection\ContainerAware;
-
 use JMS\DiExtraBundle\Annotation as DI;
 
 /**
- * @DI\Service("cs_core.menu_builder")
+ * The core menu builder, used to build the sidebar and top menus
+ *
+ * @DI\Service("cs_core.menu.builder")
+ * @DI\Tag("cs_menu.builder")
  */
-class Builder extends ContainerAware
-{
-    /**
-     * @DI\Inject("service_container");
-     */
-    public $container;
+class Builder {
 
-    public function getFactory()
-    {
-        $factory = $this->container->get('knp_menu.factory');
+	/**
+	 * @DI\Inject("knp_menu.factory");
+	 */
+	public $factory;
 
-        return $factory;
-    }
+	/**
+	 * Menu builder for the sidebar menus
+	 *
+	 * @return \Knp\Menu\ItemInterface
+	 */
+	public function sidebarMenu()
+	{
+		$menu = $this->factory->createItem('root');
 
-    public function sidebarMenu()
-    {
-        $factory = $this->getFactory();
+		$menu->addChild('Dashboard', array('route' => '_dashboard'));
 
-        $menu = $factory->createItem('root');
+		$menu->setChildrenAttributes(array('class' => 'nav nav-list'));
 
-        $menu->addChild('Dashboard', array('route' => '_dashboard'));
+		return $menu;
+	}
 
-        $menu->setChildrenAttributes(array('class' => 'nav nav-list'));
+	/**
+	 * Menu builder for the top menu
+	 *
+	 * @return \Knp\Menu\ItemInterface
+	 */
+	public function topMenu()
+	{
+		$menu = $this->factory->createItem('root');
 
-        return $menu;
-    }
+		$menu->setChildrenAttribute('class', 'nav');
 
-    public function topMenu()
-    {
-        $factory = $this->getFactory();
+		$menu->addChild('Home', array('route' => '_dashboard'));
+		$menu->addChild('Clients', array('route' => '_client_index'));
 
-        $menu = $factory->createItem('root');
-
-        $menu->setChildrenAttribute('class', 'nav');
-
-        $menu->addChild('Home', array('route' => '_dashboard'));
-        $menu->addChild('Clients', array('route' => '_client_index'));
-
-        return $menu;
-    }
+		return $menu;
+	}
 }

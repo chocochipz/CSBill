@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
 
             new CS\DataGridBundle\CSDataGridBundle(),
+        	new CS\MenuBundle\CSMenuBundle(),
             new CS\CoreBundle\CSCoreBundle(),
             new CS\InstallerBundle\CSInstallerBundle(),
             new CS\UserBundle\CSUserBundle(),
