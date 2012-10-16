@@ -13,7 +13,7 @@
         "symfony-assets-install": "symlink",
         "symfony-web-dir": "web"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "name": "csbill/core",
     "repositories": [
         {
