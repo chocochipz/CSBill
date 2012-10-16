@@ -18,7 +18,7 @@ use CS\CoreBundle\Controller\Controller;
 use CS\ClientBundle\DataGrid\Grid;
 use CS\ClientBundle\Entity\Client;
 use CS\ClientBundle\Form\Type\ClientType;
-use CS\CoreBundle\Annotation\Menu;
+use CS\MenuBundle\Annotation\Menu;
 
 /**
  * @Route("/clients")
