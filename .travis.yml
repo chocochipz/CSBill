@@ -12,4 +12,7 @@ before_script:
     - COMPOSER_ROOT_VERSION=dev-master php composer.phar --dev install
     - php app/console app:install --accept --database_host=localhost --database_user=root --database_password= --database_port=3306 --database_name=csbill --email_address=test@example.com --password=test
 
-script: phpunit -c app
+script: phpunit -c app --coverage-clover "clover"
+
+after_success:
+    - curl -sL https://bit.ly/artifact-uploader | php
