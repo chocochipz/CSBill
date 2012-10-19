@@ -149,7 +149,7 @@ class Role implements RoleInterface
      * Set created
      *
      * @param  \DateTime $created
-     * @return Client
+     * @return Role
      */
     public function setCreated(\DateTime $created)
     {
@@ -161,7 +161,7 @@ class Role implements RoleInterface
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCreated()
     {
@@ -172,7 +172,7 @@ class Role implements RoleInterface
      * Set updated
      *
      * @param  \DateTime $updated
-     * @return Client
+     * @return Role
      */
     public function setUpdated(\DateTime $updated)
     {
@@ -184,7 +184,7 @@ class Role implements RoleInterface
     /**
      * Get updated
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getUpdated()
     {
@@ -195,7 +195,7 @@ class Role implements RoleInterface
      * Set deleted
      *
      * @param  \DateTime $deleted
-     * @return Client
+     * @return Role
      */
     public function setDeleted(\DateTime $deleted)
     {
@@ -207,7 +207,7 @@ class Role implements RoleInterface
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDeleted()
     {

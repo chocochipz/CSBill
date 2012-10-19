@@ -71,6 +71,7 @@ class SystemCheck extends Step
 
     /**
      * Not implemented
+     * @param array $request
      */
     public function process($request = array()){}
 
@@ -103,9 +104,9 @@ class SystemCheck extends Step
     /**
      * Parses through the output of the system check, and extracts the requirements
      *
-     * @param  array  $output The ouput generated from the system check
-     * @param  string $header the header to look for to get the requirements
-     * @return array
+     * @param  array                      $output The ouput generated from the system check
+     * @param  string                     $header the header to look for to get the requirements
+     * @return array<string,string|array>
      */
     public function getOutput($output = array(), $header = '')
     {

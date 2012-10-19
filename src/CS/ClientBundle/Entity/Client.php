@@ -157,7 +157,7 @@ class Client
     /**
      * Get status
      *
-     * @return Status
+     * @return string
      */
     public function getStatus()
     {

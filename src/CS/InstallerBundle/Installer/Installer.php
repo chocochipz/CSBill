@@ -68,7 +68,7 @@ class Installer
     /**
      * Validte the current installation step to ensure paramaters are met
      *
-     * @return mixed RedirectResponse|boolean
+     * @return RedirectResponse|false RedirectResponse|boolean
      */
     public function validateStep($options)
     {
@@ -107,7 +107,7 @@ class Installer
     /**
      * Get the current installation step
      *
-     * @return Step
+     * @return string
      */
     public function getStep()
     {
@@ -120,7 +120,8 @@ class Installer
     /**
      * Get the session data for specific step
      *
-     * @return array
+     * @return mixed
+     * @param  string $key
      */
     public function getSession($key)
     {
@@ -187,7 +188,7 @@ class Installer
      * Creates an instance of the necessary step class
      *
      * @param  string $step
-     * @return Step
+     * @return string
      */
     protected function step($step_name = null)
     {
@@ -208,7 +209,7 @@ class Installer
      * Converts a name to camelcase
      *
      * @param  string $name
-     * @return string
+     * @return mixed
      */
     private function _checkName($name = '')
     {

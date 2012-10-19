@@ -181,7 +181,7 @@ class Contact
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getCreated()
     {
@@ -204,7 +204,7 @@ class Contact
     /**
      * Get updated
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getUpdated()
     {
@@ -227,7 +227,7 @@ class Contact
     /**
      * Get created
      *
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDeleted()
     {

@@ -42,7 +42,7 @@ class Inflector
    * @access public
    * @static
    * @param    string    $word    English noun to pluralize
-   * @return string Plural noun
+   * @return mixed Plural noun
    */
   public function pluralize($word)
   {
@@ -105,7 +105,7 @@ class Inflector
    * @access public
    * @static
    * @param    string    $word    English noun to singularize
-   * @return string Singular noun.
+   * @return mixed Singular noun.
    */
   public function singularize($word)
   {
@@ -203,7 +203,7 @@ class Inflector
    * @static
    * @see variablize
    * @param    string    $word    Word to convert to camel case
-   * @return string UpperCamelCasedWord
+   * @return mixed UpperCamelCasedWord
    */
   public function camelize($word)
   {
@@ -316,7 +316,7 @@ class Inflector
    * @access public
    * @static
    * @param    integer    $number    Number to get its ordinal value
-   * @return string Ordinal representation of given string.
+   * @return string|null Ordinal representation of given string.
    */
   public function ordinalize($number)
   {
